@@ -33,31 +33,31 @@ const profile = () => {
       <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4'>
         <MdOutlineDashboardCustomize />
         <Link href={'/user/dashboard'}>
-          <p className='mx-4 cursor-pointer'>Dashboard</p>
+          <p className='mx-4 cursor-pointer m-0'>Dashboard</p>
         </Link>
       </div>
       <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4'>
         <GrUnorderedList />
         <Link href={'/user/order'}>
-          <p className='mx-4 cursor-pointer'>My Order</p>
+          <p className='mx-4 cursor-pointer m-0'>My Order</p>
         </Link>
       </div>
       <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4'>
         <AiOutlineSetting />
         <Link href={'/user/profile'}>
-          <p className='mx-4 cursor-pointer'>Update Profile</p>
+          <p className='mx-4 cursor-pointer m-0'>Update Profile</p>
         </Link>
       </div>
       <div className='flex items-center hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4'>
         <AiOutlineFileText />
         <Link href={'/user/password'}>
-          <p className='mx-4 cursor-pointer
+          <p className='mx-4 cursor-pointer m-0
           '>Change Password</p>
         </Link>
       </div>
       <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4 cursor-pointer' onClick={logOut}>
         <FiUnlock />
-        <p className='mx-4 cursor-pointer' >Logout</p>
+        <p className='mx-4 cursor-pointer m-0' >Logout</p>
       </div>
     </div>
     <div className=' rounded-lg lg:w-3/4 bg-white p-6 my-6 mx-6 sticky top-60 lg:top-32'>

@@ -1,8 +1,10 @@
 import '../styles/globals.css'
+import 'antd/dist/antd.css'
 import type { AppProps } from 'next/app'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import Layout from '../components/layout'
+import '@szhsin/react-menu/dist/core.css';
+// import '@coreui/coreui/dist/css/coreui.min.css'
+
 
 interface Props {
   MyApp:({ Component, pageProps }: AppProps) => void

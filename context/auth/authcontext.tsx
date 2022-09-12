@@ -11,7 +11,6 @@ export interface AuthContextProvider {
 export interface AuthContextM {
   // auth:Auth
   user:User | null
-  Dname:string
   // signIn: (email:string, password:string) => Promise<UserCredential>
   // signUp: (email:string, password:string) => void
 }
@@ -30,7 +29,6 @@ export const AuthContext = React.createContext<AuthContextM>({} as AuthContextM)
 export const AuthContextProvider = ({children}:AuthContextProvider):JSX.Element => {
 
   const [user, setUser] = useState<User | null>(null)
-  const [Dname, setName] = useState('')
 
   // const signIn = (email:string, password:string) => {
   //     return signInWithEmailAndPassword(auth ,email, password)
@@ -44,10 +42,6 @@ export const AuthContextProvider = ({children}:AuthContextProvider):JSX.Element 
   useEffect(() => {
     const unsubsribe = auth.onAuthStateChanged(() => {
       setUser(user)
-      if(auth.currentUser){
-        const displayName = auth.currentUser.displayName
-        setName(displayName)
-      }
     })
 
 
@@ -57,15 +51,10 @@ export const AuthContextProvider = ({children}:AuthContextProvider):JSX.Element 
   
 
 
-  const values = {
-   
-    user,
-    Dname
-  }
 
 
   return (
-    <AuthContext.Provider value={values}>
+    <AuthContext.Provider value={{user}}>
     {children}
   </AuthContext.Provider>
   )

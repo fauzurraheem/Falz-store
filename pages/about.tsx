@@ -1,18 +1,30 @@
 import Image from 'next/image'
 import React from 'react'
-import PhotoFunia from '../assets/images/PhotoFunia.jpg'
-import grocery from '../assets/images/grocery.jpg'
-import boy from '../assets/images/boy.jpg'
-import boy2 from '../assets/images/boy2.jpg'
-import boy4 from '../assets/images/boy4.jpg'
-import girl3 from '../assets/images/girl3.jpg'
 import girl4 from '../assets/images/girl4.jpg'
-import boy5 from '../assets/images/boy5.jpg'
+import page from '../assets/webp/page-header-bg.jpg'
+import image29 from '../assets/webp/image29.webp'
+import image30 from '../assets/webp/image30.webp'
+import image31 from '../assets/webp/image31.webp'
+import image32 from '../assets/webp/image32.webp'
+import image33 from '../assets/webp/image33.webp'
+import image34 from '../assets/webp/image34.webp'
+import image35 from '../assets/webp/image35.webp'
+
+
+
 
 const About = () => {
   return (
     <div>
-      <div className='bg-gray-50	 w-full h-32 flex items-center justify-center'>
+      <div className='	 w-full h-44 flex items-center justify-center '>
+        <div className='absolute -z-10 w-full h-44'>
+            <Image src={page}
+            layout="fill"
+            objectFit="cover"
+            objectPosition='center'
+            quality={100}
+             />
+        </div>
         <h1 className='text-4xl font-medium'>About Us</h1>
       </div>
       <div className=' lg:flex mt-32 px-8 items-center '>
@@ -38,7 +50,7 @@ const About = () => {
           </div>
         </div>
        <div className='lg:w-2/4 w-full'>
-        <Image className='rounded-2xl' src={PhotoFunia} alt='' width={1000} height={700}/>
+        <Image className='rounded-2xl' src={image32} alt='' width={1000} height={700}/>
        </div>
           
        
@@ -54,7 +66,7 @@ const About = () => {
         </p>
       </div>
       <div className=' flex justify-center m-8' >
-        <Image className='rounded-2xl' src={grocery} width={800} height={400}/>
+        <Image className='rounded-2xl' src={image33} width={800} height={400} quality={100}/>
       </div>
       <div className='mt-32 mb-20 mx-8'>
         <h2 className='text-4xl font-bold'>Our Founder</h2>
@@ -62,7 +74,7 @@ const About = () => {
         <div className='sm:flex flex-wrap grid justify-items-center	 '>
             <div className='m-2 '>
                 <div>
-                  <Image  className='rounded-lg' src={boy} width={150} height={150} />
+                  <Image  className='rounded-lg' src={image31} width={150} height={150} />
                 </div>
                 <div className=''>
                   <h3 className='font-bold'>Niamh Shea</h3>
@@ -71,7 +83,7 @@ const About = () => {
               </div>
               <div className='m-2'>
                 <div>
-                <Image className='rounded-lg' src={girl3} width={150} height={150} />
+                <Image className='rounded-lg' src={image30} width={150} height={150} />
                 </div>
                 <div>
                   <h3 className='font-bold'> Orla Dwyer</h3>
@@ -80,7 +92,7 @@ const About = () => {
               </div>
               <div className='m-2'>
                 <div>
-                <Image className='rounded-lg' src={boy2} width={150} height={150} />
+                <Image className='rounded-lg' src={image29} width={150} height={150} />
                 </div>
                 <div>
                   <h3 className='font-bold'>Danien James</h3>
@@ -98,7 +110,7 @@ const About = () => {
               </div>
               <div className='m-2'>
                 <div>
-                <Image className='rounded-lg' src={girl4} width={150} height={150} />
+                <Image className='rounded-lg' src={image34} width={150} height={150} />
                 </div>
                 <div>
                   <h3 className='font-bold'>Glenda Arvidson</h3>
@@ -107,7 +119,7 @@ const About = () => {
               </div>
               <div className='m-2'>
                 <div >
-                <Image className='rounded-lg' src={boy5} width={150} height={150} />
+                <Image className='rounded-lg' src={image35} width={150} height={150} />
                 </div>
                 <div>
                   <h3 className='font-bold'>Melvin Davis</h3>

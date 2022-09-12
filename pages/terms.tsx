@@ -1,9 +1,20 @@
+import Image from 'next/image'
 import React from 'react'
+import page from '../assets/webp/page-header-bg.jpg'
 
 const Terms = () => {
   return (
     <div>
-      <div className='bg-gray-50	 w-full h-32 flex items-center justify-center'>
+      <div className='	 w-full h-44 flex items-center justify-center '>
+        <div className='absolute -z-10 w-full h-44'>
+            <Image
+             src={page}
+            layout="fill"
+            objectFit="cover"
+            objectPosition='center'
+            quality={100}
+             />
+        </div>
         <h1 className='text-4xl font-medium'>Terms & Conditions</h1>
       </div>
       <div className='mx-6 my-20'>
