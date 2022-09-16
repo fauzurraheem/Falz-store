@@ -1,13 +1,10 @@
+import { Button, Dropdown, Menu } from 'antd'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { GetServerSideProps, GetStaticProps } from 'next'
-import { product } from '../context/products/products';
-import { getAllProducts, getAllProductsA, getChillProducts} from '../utils/actions';
-import PagesTop from '../components/body/pagesTop';
-import Products from '../components/body/Products';
-import { Button, Dropdown, Menu } from 'antd';
-import { HomePageProps } from './product/[slug]';
-import { GetStaticPaths } from 'next'
+import PagesTop from '../../components/body/pagesTop'
+import Products from '../../components/body/Products'
+import { product } from '../../context/products/products'
+import { getAllProductsA, getChillProducts } from '../../utils/actions'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -15,37 +12,11 @@ import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper";
 
 import Link from 'next/link';
-import { categoryArr } from '../data/category';
+import { categoryArr } from '../../data/category'
 
-
-interface pathProp {
-  path:string | string[]
-}
-
-
-// export const getStaticProps: GetStaticProps<HomePageProps>= async ({param}) => {
-//   const products:product[] = await getPatProducts(param)
-//   return { props: { 
-//     products,
-//   } };
-// };
-
-
-// export const getStaticPaths: GetStaticPaths<pathProp> = async () => {
-
-//   const products = await getAllProductsA()
-//   const paths = products.map((productU) => ({params: {parent: productU.parent}}) )
-//   return {
-//     paths: paths,
-//     fallback: false
-//   }
-// }
-
-
-const CategoryPage = () => {
+const Search = () => {
   const [Allproduct, setAllroduct] = useState<product[]>([])
   const [sort, setSort] = useState(0)
-  const [category, setCategory] = useState<product[]>([])
   const {query} = useRouter()
   const param = query.slug as string
   console.log(query)
@@ -74,41 +45,35 @@ const CategoryPage = () => {
 
     const Product = async() => {
       const product = await getAllProductsA()
+
       setAllroduct(product)
-      // console.log(product+ 'you')
     }
     Product()
+    
   }, [])
 
+  const Regex = Allproduct.filter(item => {
+    const re = new RegExp(param, "gi")
+    return item.title.match(re)
+  })
+  console.log(Regex)
+
+
   const find = Allproduct.filter(obj => {
-    return obj.parent === param
+     
+    return obj.title.match(`/${param}/gi`)
   })
-  const children = Allproduct.filter(obj => {
-    return obj.children === param
-  })
-  console.log(children)
-  const getProduct= () => {
-    if(find.length !== 0){
-      setCategory(find)
-    }else {
-      setCategory(children)
-    }
-  }
+  console.log(find+'rr')
+  
+  
+  const Descending = [...Regex].sort((a, b) => b.price - a.price);
 
-  
-  
-  console.log(Allproduct)
-  
-  const Descending = [...category].sort((a, b) => b.price - a.price);
-  // console.log(numDescending);
+  const Ascending = [...Regex].sort((a, b) => a.price - b.price);
 
-  const Ascending = [...category].sort((a, b) => a.price - b.price);
-  // console.log(numAscending);
-  console.log(find)
 
   return (
-    <div className='p-6 h-2/4 bg-gray-50'>
-      <div >
+  <div className='p-6 h-2/4 bg-gray-50'>
+    <div >
       <div className='grid md:grid-cols-3 sm:grid-cols-2 gap-4'> 
           <div className='flex flex-col items-center rounded-lg text-white p-4' style={{backgroundImage:'url(/image3.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'bottom',width:'100%',height:'10rem' }}>
             <span className=' font-medium'>Taste of</span>
@@ -168,9 +133,9 @@ const CategoryPage = () => {
         }
       </Swiper>
       </div>
-    </div>      
-    <div className=' flex justify-between items-center my-5 bg-orange-200 p-2 rounded'>
-        <p className='align-middle m-0'>Total <span className='font-semibold'>{find.length}</span>  items Found</p>
+    </div>
+      <div className=' flex justify-between items-center my-5 bg-orange-200 p-2 rounded'>
+        <p className='align-middle m-0'>Total <span className='font-semibold'>{Regex.length}</span>  items Found</p>
         <div>
           <Dropdown overlay={menu} placement="bottomLeft" arrow={{ pointAtCenter: true }}>
           <Button>Sort by Price</Button>
@@ -178,11 +143,10 @@ const CategoryPage = () => {
         </div>
       </div>
       <div className='grid md:grid-cols-4 lg:grid-cols-5 ph:grid-cols-2 sm:grid-cols-3  gap-4 my-12'>
-      {sort === 0 &&  find.length !== 0 ?
-          find.map((product) => (
+      {sort === 0 &&
+          Regex.map((product) => (
           <Products product={product} key={product._id}/>
-      )) : children.map((product) => (
-        <Products product={product} key={product._id}/> ))
+      ))
       }
       {
         sort === 1 && Descending.map((product) => (
@@ -195,9 +159,8 @@ const CategoryPage = () => {
         ))
       }
       </div>
-      </div>
-    
+  </div>
   )
 }
 
-export default CategoryPage
+export default Search

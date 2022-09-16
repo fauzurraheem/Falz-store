@@ -38,7 +38,7 @@ const Display:React.FC = () => {
         onCancel={() => setModal1Open(false)}
         
       >
-        {signIn ? <SignInForm setSignIn={setSignIn} /> : <SingUpForm setSignIn={setSignIn}/>}
+        {signIn ? <SignInForm setSignIn={setSignIn} setOpen={setModal1Open}/> : <SingUpForm setSignIn={setSignIn} setOpen={setModal1Open}/>}
         </Modal>
     </> )
   }

@@ -14,7 +14,6 @@ import { auth } from '../../firebase.config';
 import { useRouter } from 'next/router';
 import Display from './DisplayName';
 import { RiArrowDownSFill } from 'react-icons/ri';
-// import { Dropdown, Menu, Space } from 'antd';
 import { categoryArr } from '../../data/category';
 import { Menu, MenuItem, MenuButton} from '@szhsin/react-menu';
 import {RiCloseCircleFill} from 'react-icons/ri'
@@ -30,17 +29,22 @@ import logoC from '../../assets/webp/logolight.svg'
 import Image from 'next/image';
 import { Button, Drawer } from 'antd';
 import CartDrawer from '../cart/CartDrawer';
+import { DownOutlined } from '@ant-design/icons';
+import { Tree } from 'antd';
+import type { DataNode, TreeProps } from 'antd/es/tree';
+
 
 
 const Navbar = () => {
-const [ifUser, setIfUser] = useState()
+const [Input, setInput] = useState('')
   const [subD, setSubD] = useState(false)
-
- const user = useContext(AuthContext)
- 
- console.log(subD)
- const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [childrenDrawer, setChildrenDrawer] = useState(false);
+  console.log(Input)
+  const router = useRouter()
+
+
+
 
   const showDrawer = () => {
     setOpen(true);
@@ -56,28 +60,46 @@ const [ifUser, setIfUser] = useState()
 
   const onChildrenDrawerClose = () => {
     setChildrenDrawer(false);
+    setOpen(false)
   };
 
-//  const menu = (
-//   <Menu
-//     items={categoryArr.map((cat,index) => (
-//       {
-//         label: ( <div>
-//           <div className='flex items-center p-1 rounded-lg'>
-//           <div className='h-5 w-5' style={{backgroundImage:`url(${cat.icon})`,backgroundRepeat:'no-repeat',backgroundSize:"cover"}}>
-//           </div>
-//           <div className='p-1 flex flex-col '>
-//             <Link href={`/${cat.parent}`} >
-//               <h5 className=' text-gray-600 hover:text-emerald-500 cursor-pointer ml-5'>{cat.parent}</h5>
-//             </Link>
-//           </div>
-//         </div>
-//           </div>),
-//         key: index,
-//       }
-//     ))}
-//   />
-// );
+ const user = useContext(AuthContext)
+ 
+ console.log(subD)
+ const treeData: DataNode[] = 
+  categoryArr.map((cat, index) => ({
+    title:(<div className='flex items-center  text-sm'>
+    <div className='h-5 w-5' style={{backgroundImage:`url(${cat.icon})`,backgroundRepeat:'no-repeat',backgroundSize:"cover"}}>
+  </div>
+    <div className='p-1 flex flex-col '>
+    <h5 className=' text-black cursor-pointer ml-3 m-0'>{cat.parent}</h5> 
+    </div>
+  </div>),
+  key: `0-${index}`,
+  children:cat.children.map((chil, index) => ({
+    title:(<Link href={`/${chil}`}>
+    <h5 className=' text-black hover:text-emerald-700 cursor-pointer m-0' onClick={onChildrenDrawerClose}>{chil}</h5>
+    </Link>),
+    key:`0-0-${index}`,
+  }))
+    
+}))
+  
+
+  const onSelect: TreeProps['onSelect'] = (selectedKeys, info) => {
+    console.log('selected', selectedKeys, info);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    console.log(Input)
+    router.push(`/search/${Input}`)
+    setInput('')
+  }
+
+
+ 
+
 
 
 
@@ -103,16 +125,18 @@ const [ifUser, setIfUser] = useState()
     
       <div className='flex flex-col  z-10 w-full sticky top-0'>
         <div className=''>
-        <div className='flex items-center justify-center md:justify-between bg-emerald-500	px-9 static top-0 h-[76.8px]  '>
+        <div className='flex items-center justify-center md:justify-between bg-emerald-500	px-9 static top-0 h-[65px]  '>
           <Link href={'./'}>
             <div className='w-1/4 md:flex	hidden' >
                   <Image src={logoC} width={100}  height={50} color='black'/>
             </div>
           </Link>     
-            <div className='flex items-center h-3/5 bg-white p-2 rounded-md w-3/4 '>
-              <input type="text" className='pl-6 w-11/12  outline-0 text-[.8rem]' placeholder='Search for products (e.g fish,apple,oil) ' />
-              <TbSearch color='gray' size={20}/>
-            </div>
+            <form className='flex items-center h-3/5 bg-white p-2 rounded-md w-3/4 ' >
+              <input type="text" className='pl-2 w-11/12  outline-0 text-[.8rem]' placeholder='Search for products (e.g fish,apple,oil) ' value={Input} onChange={(e) => setInput(e.target.value)} />
+              <button onClick={handleSearch}>
+                 <TbSearch color='gray' size={15} onClick={() => router.push('/about')} />
+              </button>
+            </form>
             <div className='md:flex w-1/4 justify-evenly hidden items-center'>
               <MdNotificationsNone color='white' size={30}/>
               <CartDrawer />
@@ -122,7 +146,7 @@ const [ifUser, setIfUser] = useState()
           <div className='md:flex  items-center justify-between bg-white border-b-2	border-slate-100 h-[40px] px-9 hidden '>
             <div>
               <ul className='flex m-0'>
-              <Menu menuButton={<MenuButton><div className='flex items-center'><p className='m-0 ml-2'>Categories</p><RiArrowDownSFill /></div></MenuButton>}>
+              <Menu menuButton={<MenuButton><div className='flex items-center'><p className='m-0 ml-2 text-xs'>Categories</p><RiArrowDownSFill /></div></MenuButton>}>
                   <div className='grid grid-cols-2'>
                   {
                     categoryArr.map((cat) => (
@@ -142,16 +166,16 @@ const [ifUser, setIfUser] = useState()
                   </div>
                 </Menu>
                 <Link href={'/about'}>
-                  <li className='px-4 cursor-pointer'> 
-                    <span>About Us</span>
+                  <li className='px-4 pt-1 cursor-pointer text-xs align-middle'> 
+                    <span className='align-middle'>About Us</span>
                   </li>
                 </Link>
                 <Link href={'/contact'}>
-                <li className='px-4 cursor-pointer'> 
-                  <span>Contact Us</span>
+                <li className='px-4 pt-1 cursor-pointer text-xs align-middle'> 
+                  Contact Us
                 </li>
                 </Link>
-                <Menu menuButton={<MenuButton><div className='flex items-center'><p className='m-0 ml-2'>Pages</p><RiArrowDownSFill /></div></MenuButton>}>
+                <Menu menuButton={<MenuButton><div className='flex items-center'><p className='m-0 ml-2 text-xs'>Pages</p><RiArrowDownSFill /></div></MenuButton>}>
                   <MenuItem>
                   <Link href={'/offer'}>
                     <div className='py-2 pl-4 flex        items-center hover:bg-gray-50 '>
@@ -219,13 +243,13 @@ const [ifUser, setIfUser] = useState()
                 </Menu>
                 <Link href={'/offer'}>
                   <li className='px-4 cursor-pointer'>
-                  <span>Offer</span>
+                  <span className='py-1 px-2 bg-red-100 text-red-500 text-xs hover:text-emerald-500 rounded'>Offer</span>
                   </li>
                 </Link>
               </ul>
             </div>
             <div>
-              <ul className='flex justify-between m-0'>
+              <ul className='flex justify-between m-0 text-xs'>
                 <Link href={'/policy'}>
                   <li className='px-4 cursor-pointer'>Privacy Policy</li>
                 </Link>
@@ -251,54 +275,24 @@ const [ifUser, setIfUser] = useState()
         <Display />
       </div>
       <Drawer title={<Image src={logoC} width={100}  height={50} color='black'/>
-        } closeIcon={<RiCloseCircleFill color='white' size={30} />} headerStyle={{backgroundColor:'rgb(16 ,185, 129)'}} placement="left" onClose={onClose} open={open}>
+        } closeIcon={<RiCloseCircleFill color='white' size={30} />} headerStyle={{backgroundColor:'rgb(16 ,185, 129)'}} placement="left" onClose={onClose} open={open} width={300}>
       <div>
         <p className='text-lg font-bold mb-2'>All Categories</p>
         <hr></hr>
       </div>
-      {
-        categoryArr.map((cat) => (
-          <Link href={`/${cat.parent}`}>
-          <div className='flex items-center p-1 rounded-lg'>
-          <div className='h-5 w-5' style={{backgroundImage:`url(${cat.icon})`,backgroundRepeat:'no-repeat',backgroundSize:"cover"}}>
-        </div>
-          <div className='p-1 flex flex-col '>
-          <h5 className=' text-black hover:text-emerald-700 cursor-pointer ml-5'>{cat.parent}</h5> 
-          </div>
-        </div>
-          </Link>
-          
-        ))
-      }
-       <Button type="primary" onClick={showChildrenDrawer}>
-        <h1>Sub Categories</h1>
-        </Button>
-      <Drawer
-          title={<h1 className='text-white font-semibold text-xl'>Sub Categories</h1>}
-          width={220}
-          closable={false}
-          onClose={onChildrenDrawerClose}
-          open={childrenDrawer}
-          placement='left'
-          headerStyle={{backgroundColor:'rgb(16 ,185, 129)',color:'white',fontSize:'4rem',fontWeight:'bold'}}
-        >
-          {categoryArr.map((cat) => (
-          <>
-            {cat.children.map((ca) => (
-              <Link href={`/children/${ca}`}>
-              <h5 className=' text-black hover:text-emerald-700 cursor-pointer ml-5'>{ca}</h5>
-              </Link>
-            ))}
-          </>
-           
-          ))}
-        </Drawer>
+       <Tree
+      // showLine
+      // switcherIcon={<DownOutlined />}
+      // defaultExpandedKeys={['0-0-0']}
+      onSelect={onSelect}
+      treeData={treeData}
+    />
       <div className='mt-14'>
         <p className='text-lg font-bold mb-2'>Pages</p>
         <hr></hr>
       </div>
         <Link href={'/offer'}>
-          <div className='py-2 mt-4 pl-4 flex text-black        items-center hover:bg-gray-50 cursor-pointer '>
+          <div className='py-2 mt-4 pl-4 flex text-black  items-center hover:bg-gray-50 cursor-pointer '>
             <AiOutlineGift />
           <p className='m-0 hover:text-emerald-600 ml-2'>Offer</p>
           </div>

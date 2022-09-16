@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import { product } from '../../context/products/products';
-import { getAllProductsA, getSlugProducts } from '../../utils/actions';
+import { getAllProductsA, getChillProducts, getSlugProducts } from '../../utils/actions';
 import { MdOutlineLocalShipping } from 'react-icons/md'
 import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
 import { BiHomeAlt } from 'react-icons/bi';
@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { CartContext } from '../../context/cart/cartContext';
 import { CartActions } from '../../context/cart/cartReducer';
+import Products from '../../components/body/Products';
 
 
 export interface HomePageProps {
@@ -32,16 +33,21 @@ export interface HomePageProps {
 
 const ProductDetails = () => {
   const [product, setProduct] = useState<product>({} as product)
+  const [related, setRelated] = useState<product[]>([])
+
   const {query} = useRouter()
-  const param = query.slug
+  const param = query.slug as string
   console.log(param)
 
   const {state:{cart},dispatch} = useContext(CartContext)
-
+ const found = cart.find( p =>p._id === product._id ) 
   useEffect( () => {
 
     const Product = async() => {
       const product = await getSlugProducts(param)
+      const related= await getChillProducts(product.children)
+      setRelated(related)
+
       // transform()
       setProduct(product)
       console.log(product+ 'you')
@@ -81,10 +87,10 @@ const ProductDetails = () => {
 
   }
   
-  // const sku = product._id.slice(-6)
-  const found = cart.find( p =>p._id === product._id ) 
-
-
+  
+ 
+  const sku = product._id
+  console.log(related)
   return (
     <div className='px-1 Sm:px-10 py-3 Sm:py-6 bg-gray-50'>
       <ul className='flex'>
@@ -111,7 +117,7 @@ const ProductDetails = () => {
           <article className='Sm:w-[50%]'>
             <div className=''>
               <h3 className='text-gray-900 text-xl font-bold'>{product.title}</h3>
-              <h3 className='font-bold text-lg text-gray-500'>SKU: {product._id}</h3>
+              <h3 className='font-bold  text-gray-500'>SKU: <span className=' text-gray-700'>{sku}</span></h3>
               <h2 className='font-semibold text-xl mb-0'>${product.price}</h2>
               {product.quantity !== 0 ? <span className='py-1 px-2 bg-emerald-300 text-emerald-600 text-xs rounded-2xl font-semibold'>In stock</span> : <span className='py-1 px-2 bg-orange-500 text-white text-xs rounded-2xl'>stock out</span>}
               <p className='text-gray-700 text-sm mt-2'>{product.description}</p>
@@ -153,7 +159,7 @@ const ProductDetails = () => {
            '>
             <div className='bg-gray-50 rounded-xl text-xs  p-4'>
               <div className='flex items-center my-4'>
-                <MdOutlineLocalShipping size={20} color='rgb(107, 114, 128)'/>
+                <MdOutlineLocalShipping size={25} color='rgb(107, 114, 128)'/>
                 <p className='m-0 ml-3 text-gray-500'>Free shipping apply to all orders over shipping <span className='font-semibold'>$100</span></p>
               </div>
               <div className='flex items-center my-4'>
@@ -185,6 +191,13 @@ const ProductDetails = () => {
         </div>
       </section>
       <p className='text-xl font-semibold my-5'>Related Products</p>
+      <div className='grid md:grid-cols-5 ph:grid-cols-2 sm:grid-cols-3  gap-4 my-12'>
+      {
+        related.map((rel) => (
+          <Products product={rel} key={rel._id}/>
+        ))
+      }
+      </div>
     </div>
   )
 }

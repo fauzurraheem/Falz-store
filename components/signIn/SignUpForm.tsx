@@ -19,9 +19,10 @@ import { signInWithPopup, GoogleAuthProvider, } from "firebase/auth";
 
 interface Props {
   setSignIn: React.Dispatch<React.SetStateAction<boolean>> 
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const SingUpForm:React.FC<Props> = ({setSignIn}) => {
+const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -43,15 +44,14 @@ const SingUpForm:React.FC<Props> = ({setSignIn}) => {
        setName('')
        setEmail('')
        setPassword('')
-       
+      router.push('/')
        toast.success('Registration sucessful')
-       router.push('/')
+       setOpen(false)
+     
         
       } catch (error) {
         toast.error('invalid credentials')
       }
-
-      
   }
 
   const loginWithGoogle = () => {
@@ -67,7 +67,7 @@ const SingUpForm:React.FC<Props> = ({setSignIn}) => {
     // // ...
     // console.log(user)
     toast.success('Registration sucessful')
-
+    setOpen(false)
   }).catch((error) => {
     // // Handle Errors here.
     // const errorCode = error.code;

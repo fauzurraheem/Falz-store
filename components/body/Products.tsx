@@ -77,8 +77,7 @@ const Products:React.FC<ProductProps> = ({product}) => {
   
   return (
     
-    <div className='text-sm bg-white p-4 '>
-      <div>
+    <div className='text-sm bg-white p-4 flex flex-col justify-between'>
         <div>
         <Button type="link" style={{width:'100%', height:'200px'}} onClick={showModal}>
        <div className='flex justify-between items-start hover:scale-110' style={{backgroundImage: `url(${ImageUrl})`, width:'100%', height:'200px', backgroundSize: 'contain', backgroundPosition:'center', backgroundRepeat:'no-repeat'}}>
@@ -93,15 +92,14 @@ const Products:React.FC<ProductProps> = ({product}) => {
           <div className='flex justify-between items-center'>
             <h2 className='font-semibold text-xl'>${product.price} {product.discount > 0  && <span className='text-sm text-gray-400 line-through align-middle font-normal'>${product.originalPrice}</span>}</h2>
             {
-                cart.some(p => p._id === product._id ) ? <div className='p-2 border text-white border-gray-200 bg-emerald-500 flex items-center rounded-lg'>
-                  <span onClick={reduceA} className='mx-2 font-semibold cursor-pointer' ><AiOutlineMinus /></span>
+                cart.some(p => p._id === product._id ) ? <div className='p-1 border text-white border-gray-200 bg-emerald-500 flex items-center rounded-lg'>
+                  <span onClick={reduceA} className='mx-1 font-semibold cursor-pointer text-gray-300' ><AiOutlineMinus /></span>
                   {cart.some(p => p._id === product._id ) && found && <span>{found.__v}</span>}
-                  <span onClick={addAmount} className='mx-2 font-semibold cursor-pointer'><AiOutlinePlus /></span>
+                  <span onClick={addAmount} className='mx-1 font-semibold cursor-pointer text-gray-300'><AiOutlinePlus /></span>
                 </div> : <div className='hover:bg-emerald-500 hover:text-white text-base text-emerald-500 p-2 border border-gray-200 cursor-pointer'><FaShoppingBag size={20}  onClick={handleAdd} /></div> 
               }
           </div>
         </div>
-      </div>
       <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null} width={900}>
         <div className='flex justify-between flex-col Sm:flex-row p-3 p'>
             <div className='flex justify-between items-start Sm:w-2/4 w-full' style={{backgroundImage: `url(${ImageUrl})`,  height:'300px', backgroundSize: 'contain', backgroundPosition:'center', backgroundRepeat:'no-repeat'}}>

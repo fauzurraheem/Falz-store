@@ -5,17 +5,20 @@ import {GrFacebookOption} from 'react-icons/gr';
 import {AiOutlineGoogle} from 'react-icons/ai';
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import { Router, useRouter } from 'next/router';
 
 interface Props {
   setSignIn: React.Dispatch<React.SetStateAction<boolean>> 
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const SignInForm:React.FC<Props> = ({setSignIn}) => {
+const SignInForm:React.FC<Props> = ({setSignIn, setOpen}) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [signUp, setSignUp] = useState(false)
   const [password, setPassword] = useState('')
   const auth = getAuth()
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -24,9 +27,9 @@ const SignInForm:React.FC<Props> = ({setSignIn}) => {
        await signInWithEmailAndPassword(auth, email, password)
        setEmail('')
        setPassword('')
-       
+       router.push('/')
        toast.success('Registration sucessful')
-        
+        setOpen(false)
       } catch (error) {
         toast.error('invalid credentials')
       }
@@ -48,7 +51,7 @@ const SignInForm:React.FC<Props> = ({setSignIn}) => {
       // // ...
       // console.log(user)
       toast.success('Registration sucessful')
-  
+      setOpen(false)
     }).catch((error) => {
       // // Handle Errors here.
       // const errorCode = error.code;

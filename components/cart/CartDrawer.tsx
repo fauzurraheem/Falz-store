@@ -36,10 +36,10 @@ const CartDrawer = () => {
       </Button>
     </Badge>
       
-      <Drawer title={<div className='flex text-base items-center font-semibold '><BiShoppingBag size={20} /> <p className='m-0 ml-2'>Shopping Cart</p></div>} placement="right"headerStyle={{backgroundColor:'rgb(238, 242, 255)'}} footer={ <Link href={'/checkout'}><div className='h-12 bg-emerald-500 rounded-lg p-2 hover:bg-emerald-600 flex justify-between'>
+      <Drawer title={<div className='flex text-base items-center font-semibold '><BiShoppingBag size={20} /> <p className='m-0 ml-2'>Shopping Cart</p></div>} placement="right"headerStyle={{backgroundColor:'rgb(238, 242, 255)'}} footer={ <Link href={'/checkout'}><div className='h-12 bg-emerald-500 rounded-lg p-2 hover:bg-emerald-600 flex justify-between' onClick={onClose}>
         <p className='text-white text-base m-0 align-middle mt-1'>Proceed To Checkout</p>
         <p className='bg-white text-emerald-500 w-[30%] h-full rounded-lg align-middle text-base font-semibold flex items-center justify-center p-2'>${total}</p>
-      </div></Link>} footerStyle={{}}  onClose={onClose} open={open} bodyStyle={{padding:'0'}}>
+      </div></Link>}   onClose={onClose} open={open} bodyStyle={{padding:'0'}}>
         {cart.length === 0 &&
             <div className='w-full h-full flex items-center flex-col justify-center'>
               <span className='bg-gray-50 text-emerald-500 p-2 rounded-full'>

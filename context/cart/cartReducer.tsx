@@ -70,11 +70,6 @@ const cartReducer = (state:Init, action:Actions) => {
           cart: state.cart.filter((r) => r._id !== action.payload._id )
         }
       }
-    // case ActionType.Clear_User:
-    //     return{
-    //         ...state,
-    //         users: action.payload,
-    //     }
     default:
         return state
   }
