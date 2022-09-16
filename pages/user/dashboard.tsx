@@ -11,12 +11,12 @@ import { GiCheckMark } from 'react-icons/gi';
 import { RiShoppingBag3Fill} from 'react-icons/ri';
 import Link from 'next/link';
 import { auth } from '../../firebase.config';
-import { Router, useRouter } from 'next/router';
+import {useRouter } from 'next/router';
 import { signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
 
-const dashboard = () => {
+const Dashboard = () => {
   const router = useRouter()
  
   const logOut = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -116,4 +116,4 @@ const dashboard = () => {
   )
 }
 
-export default dashboard
+export default Dashboard

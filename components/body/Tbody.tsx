@@ -47,7 +47,7 @@ const Tbody = () => {
 
   return (
     <>
-    <div className='py-4 px-8'>
+    {/* <div className='py-4 px-8'>
       <div className='flex gap-3 justify-between'>
           <div className='md:w-3/5 w-full'>
             <Swiper
@@ -64,10 +64,10 @@ const Tbody = () => {
               navigation={false}
               modules={[Autoplay, Pagination]}
               className="mySwiper"
-              style={{maxHeight:'', height:'90%'}}
+              style={{ height:'90%'}}
             >
               <SwiperSlide key={1}>
-                <div className=' w-full h-full rounded-lg flex justify-center flex-col px-4 py-4 sm:py-9' style={{backgroundImage:`url(./image7.webp)`,backgroundRepeat:'no-repeat',backgroundSize:"", backgroundPosition:'bottom'}}>
+                <div className=' w-full h-full rounded-lg flex justify-center flex-col px-4 py-4 sm:py-9' style={{backgroundImage:`url(/image7.webp)`,backgroundRepeat:'no-repeat',backgroundSize:"", backgroundPosition:'bottom'}}>
                 <h1 className='text-2xl font-semibold w-[50%] m-0 sm:hidden'>The Best Quality...</h1>
                   <p className=' w-[50%]  text-gray-600 sm:hidden'>Dramatically facilitate effective ...</p>
                   <h1 className='text-2xl font-semibold w-[50%] m-0 hidden sm:block'>The Best Quality Product Guaranteed!</h1>
@@ -76,7 +76,7 @@ const Tbody = () => {
                 </div>
               </SwiperSlide>
               <SwiperSlide key={2}>
-              <div className=' w-full h-full rounded-lg flex justify-center flex-col px-4 py-4 sm:py-9' style={{backgroundImage:`url(./image8.webp)`,backgroundRepeat:'no-repeat',backgroundSize:"", backgroundPosition:'bottom'}}>
+              <div className=' w-full h-full rounded-lg flex justify-center flex-col px-4 py-4 sm:py-9' style={{backgroundImage:`url(/image8.webp)`,backgroundRepeat:'no-repeat',backgroundSize:"", backgroundPosition:'bottom'}}>
                   <h1 className='text-2xl m-0 font-semibold w-[50%] sm:hidden '>The Best Quality...</h1>
                   <p className=' w-[50%] m-0 text-gray-600 sm:hidden'>Dramatically facilitate effective...</p>
                   <h1 className='text-2xl font-semibold w-[50%] hidden sm:block'>The Best Quality Product Guaranteed!</h1>
@@ -85,7 +85,7 @@ const Tbody = () => {
                 </div>
               </SwiperSlide>
               <SwiperSlide key={3}>
-              <div className=' w-full h-full rounded-lg flex justify-center flex-col px-4 py-4 sm:py-9' style={{backgroundImage:`url(./image9.webp)`,backgroundRepeat:'no-repeat', backgroundPosition:'bottom'}}>
+              <div className=' w-full h-full rounded-lg flex justify-center flex-col px-4 py-4 sm:py-9' style={{backgroundImage:`url(/image9.webp)`,backgroundRepeat:'no-repeat', backgroundPosition:'bottom'}}>
                   <h1 className='text-2xl m-0 font-semibold w-[50%]  sm:hidden'>The Best Quality...</h1>
                   <p className='m-0 w-[50%]  text-gray-600 sm:hidden'>Dramatically facilitate effective...</p>
                   <h1 className='text-2xl m-0 font-semibold w-[50%] hidden sm:block '>The Best Quality Product Guaranteed!</h1>
@@ -154,8 +154,8 @@ const Tbody = () => {
         <h4 className='text-lg font-medium m-0'>Featured Categories</h4>
         <p className='text-sm text-gray-600 m-0'>Choose your necessary products from this feature categories.</p>
       </div>
-      <div className='grid md:grid-cols-5 sm:grid-cols-3 ph:grid-cols-2 text-gray-400 gap-px'>
-        {
+      <div className='grid md:grid-cols-5 sm:grid-cols-3 ph:grid-cols-2 text-gray-400 gap-px'> */}
+        {/* {
           categoryArr.map((cat) => (
             <div className='flex bg-white p-3'>
             <div className='w-2/4 h-full max-w-[2rem]' style={{backgroundImage:`url(${cat.icon})`,backgroundRepeat:'no-repeat',backgroundSize:"contain"}}>
@@ -175,9 +175,9 @@ const Tbody = () => {
             </div>
           </div>
           ))
-        } 
-      </div>
-    </div>
+        }  */}
+      {/* </div>
+    </div> */}
 
   </>
   )

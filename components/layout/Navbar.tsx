@@ -37,10 +37,9 @@ import type { DataNode, TreeProps } from 'antd/es/tree';
 
 const Navbar = () => {
 const [Input, setInput] = useState('')
-  const [subD, setSubD] = useState(false)
   const [open, setOpen] = useState(false);
   const [childrenDrawer, setChildrenDrawer] = useState(false);
-  console.log(Input)
+  // console.log(Input)
   const router = useRouter()
 
 
@@ -65,7 +64,6 @@ const [Input, setInput] = useState('')
 
  const user = useContext(AuthContext)
  
- console.log(subD)
  const treeData: DataNode[] = 
   categoryArr.map((cat, index) => ({
     title:(<div className='flex items-center  text-sm'>
@@ -80,7 +78,7 @@ const [Input, setInput] = useState('')
     title:(<Link href={`/${chil}`}>
     <h5 className=' text-black hover:text-emerald-700 cursor-pointer m-0' onClick={onChildrenDrawerClose}>{chil}</h5>
     </Link>),
-    key:`0-0-${index}`,
+    key:`0-0-1`,
   }))
     
 }))
@@ -92,7 +90,7 @@ const [Input, setInput] = useState('')
 
   const handleSearch = (e) => {
     e.preventDefault()
-    console.log(Input)
+    // console.log(Input)
     router.push(`/search/${Input}`)
     setInput('')
   }
@@ -150,7 +148,7 @@ const [Input, setInput] = useState('')
                   <div className='grid grid-cols-2'>
                   {
                     categoryArr.map((cat) => (
-                      <MenuItem>
+                      <MenuItem key={cat._id}>
                       <Link href={`/${cat.parent}`} >
                         <div className='flex items-center p-1 rounded-lg'>
                         <div className='h-5 w-5' style={{backgroundImage:`url(${cat.icon})`,backgroundRepeat:'no-repeat',backgroundSize:"cover"}}>

@@ -19,7 +19,7 @@ import { useRouter } from 'next/router';
 
 
 
-const profile = () => {
+const Profile = () => {
   const router = useRouter()
 
   const logOut = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -100,4 +100,4 @@ const profile = () => {
   )
 }
 
-export default profile
+export default Profile

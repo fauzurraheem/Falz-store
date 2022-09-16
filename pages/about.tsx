@@ -22,7 +22,7 @@ const About = () => {
             layout="fill"
             objectFit="cover"
             objectPosition='center'
-            quality={100}
+            quality={100} alt=''
              />
         </div>
         <h1 className='text-4xl font-medium'>About Us</h1>
@@ -70,7 +70,7 @@ const About = () => {
       </div>
       <div className='mt-32 mb-20 mx-8'>
         <h2 className='text-4xl font-bold'>Our Founder</h2>
-        <p className='my-6 text-'>We’re impartial and independent, and every day we create distinctive, world-class reintermediate backend supply programmes.</p>
+        <p className='my-6 text-'>We're impartial and independent, and every day we create distinctive, world-class reintermediate backend supply programmes.</p>
         <div className='sm:flex flex-wrap grid justify-items-center	 '>
             <div className='m-2 '>
                 <div>

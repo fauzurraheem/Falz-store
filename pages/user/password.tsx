@@ -13,7 +13,7 @@ import { auth } from '../../firebase.config';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
-const details = () => {
+const Details = () => {
   const router = useRouter()
 
     const logOut = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -81,4 +81,4 @@ const details = () => {
   )
 }
 
-export default details
+export default Details

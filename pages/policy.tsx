@@ -11,7 +11,7 @@ const Policy = () => {
             layout="fill"
             objectFit="cover"
             objectPosition='center'
-            quality={100}
+            quality={100} alt=''
              />
         </div>
         <h1 className='text-4xl font-medium'>Privacy Policy</h1>

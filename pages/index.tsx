@@ -25,8 +25,6 @@ export const getStaticProps: GetStaticProps<HomePageProps>= async () => {
 
 
 const Home:React.FC<HomePageProps> = ({products,disProducts}) => {
-  console.log(products)
-  console.log(disProducts)
   return (
     <AuthContextProvider>
       <div className='border-box'>
