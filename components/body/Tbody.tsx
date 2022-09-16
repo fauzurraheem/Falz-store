@@ -47,7 +47,7 @@ const Tbody = () => {
 
   return (
     <>
-    {/* <div className='py-4 px-8'>
+    <div className='py-4 px-8'>
       <div className='flex gap-3 justify-between'>
           <div className='md:w-3/5 w-full'>
             <Swiper
@@ -154,7 +154,7 @@ const Tbody = () => {
         <h4 className='text-lg font-medium m-0'>Featured Categories</h4>
         <p className='text-sm text-gray-600 m-0'>Choose your necessary products from this feature categories.</p>
       </div>
-      <div className='grid md:grid-cols-5 sm:grid-cols-3 ph:grid-cols-2 text-gray-400 gap-px'> */}
+      <div className='grid md:grid-cols-5 sm:grid-cols-3 ph:grid-cols-2 text-gray-400 gap-px'>
         {/* {
           categoryArr.map((cat) => (
             <div className='flex bg-white p-3'>
@@ -176,8 +176,8 @@ const Tbody = () => {
           </div>
           ))
         }  */}
-      {/* </div>
-    </div> */}
+       </div>
+    </div>
 
   </>
   )
