@@ -98,7 +98,7 @@ const Home:React.FC<HomePageProps> = ({products,disProducts}) => {
               >
                 <SwiperSlide key={1}>
                 <div className=' w-full h-full rounded-lg flex justify-center items-start flex-col px-4 py-4' style={{backgroundImage:`url(/image7.webp)`,backgroundRepeat:'no-repeat', backgroundPosition:'center',backgroundSize:"100%"}}>
-                    <h1 className='text-2xl font-semibold w-[60%] line-clamp-1 md:line-clamp-none leading-10 align-middle'>The Best Quality Product Guaranteed!</h1>
+                    <h1 className='text-2xl font-semibold w-[60%] line-clamp-1 md:line-clamp-none leading-7 '>The Best Quality Product Guaranteed!</h1>
                     <p className='mb-6 w-[60%] leading-6  text-gray-600 line-clamp-1 md:line-clamp-none'>Dramatically facilitate effective total linkage for go forward processces</p>
                     <span className='bg-emerald-500 cursor-pointer w-[8rem] text-center py-2 rounded-lg text-gray-50 px-6 mb-6 hidden Sm:block m-0'>Shop Now</span>
                   </div>
