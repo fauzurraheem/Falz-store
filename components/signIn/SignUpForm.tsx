@@ -41,13 +41,14 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
        setName('')
        setEmail('')
        setPassword('')
+       setOpen(false)
       router.push('/')
        toast.success('Registration sucessful')
        setOpen(false)
      
         
       } catch (error) {
-        toast.error('Poor Connection')
+        toast.error(error)
       }
   }
 

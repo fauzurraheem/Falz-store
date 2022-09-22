@@ -17,7 +17,6 @@ import { toast } from 'react-toastify';
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { GetServerSideProps} from 'next'
 import { invoice } from '../order/[slug]';
-import { async } from '@firebase/util';
 
 
 // export const getServerSideProps: GetServerSideProps = async () => {
@@ -67,11 +66,9 @@ const Dashboard = () => {
     signOut(auth).then(() => {
       router.push('/')
       toast.success("LogOut Successfull");
-      console.log(e)
     });
     
   }
-  console.log(order)
 
   return (
     <div className='py-8 px-4 sm:px-8 flex flex-col md:flex-row bg-gray-50 md:justify-between'>

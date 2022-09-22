@@ -66,7 +66,7 @@ const CartDrawer = () => {
         }
         {cart.length !== 0 && 
           cart.map((item) => (
-            <div className='flex p-2 text-sm hover:bg-gray-100'>
+            <div className='flex p-2 text-sm hover:bg-gray-100' key={item._id}>
               <div className=' object-cover flex items-center'>
                 <img src={item.image} width={50} height={50} style={{borderRadius:'50%',border:'1px solid lightgray'}}/>
               </div>
