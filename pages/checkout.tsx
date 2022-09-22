@@ -102,37 +102,31 @@ const Checkout = () => {
         Total
       }
       if(payment !== 'cash'){
-        // const paystack = new PaystackPop()
-        // paystack.newTransaction({
-        //   key:"pk_test_5e8fb19405d0aeb9965c6ef8fe96d0265d059926",
-        //   amount: Total*100,
-        //   firstName,
-        //   lastName,
-        //   email,
-        //   async onSuccess(){
-        //     try {
-        //       const docRef = await addDoc(collection(db,  'invoice'),formDataCopy)
-        //       toast.success('Payment Succesfull, Order Taken')
-        //       dispatch({
-        //         type:CartActions.Clear_Cart
-        //       })
-        //       router.push(`/order/${docRef.id}`)
-        //     } catch (error) {
-        //       toast.error('Connection Problem')
-        //       setLoading(false)
-        //     }
-        //   },
-        //   onCancel(){
-        //     toast.error('Poor Connection, Please Try Again')
-        //     router.push('/')
-        //   }
-        // })
+        const paystack = new PaystackPop()
+        paystack.newTransaction({
+          key:"pk_test_5e8fb19405d0aeb9965c6ef8fe96d0265d059926",
+          amount: Total*100,
+          firstName,
+          lastName,
+          email,
+          async onSuccess(){
+            try {
               const docRef = await addDoc(collection(db,  'invoice'),formDataCopy)
               toast.success('Payment Succesfull, Order Taken')
               dispatch({
                 type:CartActions.Clear_Cart
               })
               router.push(`/order/${docRef.id}`)
+            } catch (error) {
+              toast.error('Connection Problem')
+              setLoading(false)
+            }
+          },
+          onCancel(){
+            toast.error('Poor Connection, Please Try Again')
+            router.push('/')
+          }
+        })
   
       } else {
         try {

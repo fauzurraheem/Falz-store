@@ -50,6 +50,8 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
       } catch (error) {
         toast.error(error)
       }
+
+      router.push('/')
   }
 
   const loginWithGoogle = () => {
