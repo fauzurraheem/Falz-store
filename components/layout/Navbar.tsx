@@ -311,7 +311,7 @@ const [Input, setInput] = useState('')
           <p className='m-0 hover:text-emerald-600 ml-2'>FAQ</p>
           </div>
         </Link>
-        <Link href={'/aout'}>
+        <Link href={'/about'}>
           <div className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer  '>
             <MdPeopleOutline />
           <p className='m-0 hover:text-emerald-600 ml-2'>About Us</p>
