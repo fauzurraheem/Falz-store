@@ -6,7 +6,8 @@ export enum CartActions {
   Add_To_Cart,
   Add_Amount,
   Reduce_Amount,
-  Remove_From_Cart
+  Remove_From_Cart,
+  Clear_Cart
 }
 
 export interface Add_To_Cart {
@@ -27,8 +28,11 @@ export interface Remove_From_Cart {
   type:CartActions.Remove_From_Cart
   payload:product
 }
+export interface Clear_Cart {
+  type:CartActions.Clear_Cart
+}
 
-export type Actions = Add_To_Cart | Remove_From_Cart | Add_Amount | Reduce_Amount ;
+export type Actions = Add_To_Cart | Remove_From_Cart | Add_Amount | Reduce_Amount | Clear_Cart ;
 
 const cartReducer = (state:Init, action:Actions) => {
   switch(action.type){
@@ -70,6 +74,11 @@ const cartReducer = (state:Init, action:Actions) => {
           cart: state.cart.filter((r) => r._id !== action.payload._id )
         }
       }
+      case CartActions.Clear_Cart:
+        return {
+          ...state,
+          cart: []
+        }
     default:
         return state
   }

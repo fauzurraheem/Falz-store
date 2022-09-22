@@ -70,62 +70,81 @@ const Checkout = () => {
   
 
   const handleSubmit =  async(e)=> {
-    setLoading(true)
     e.preventDefault()
-    setGoods(cart)
-    if(payment === 'Card'){
-      setisPaid(true)
-    }
-    const formDataCopy = {
-      ...formData,
-      timeStamp:serverTimestamp(),
-      userRef: auth.currentUser.uid,
-      payment,
-      shipping,
-      isPaid,
-      Total
-    }
-    if(payment !== 'cash'){
-      // const paystack = new PaystackPop()
-      // paystack.newTransaction({
-      //   key:"pk_test_5e8fb19405d0aeb9965c6ef8fe96d0265d059926",
-      //   amount: Total*100,
-      //   firstName,
-      //   lastName,
-      //   email,
-      //   async onSuccess(){
-      //     try {
-      //       console.log(formDataCopy)
-      //       const docRef = await addDoc(collection(db,  'invoice'),formDataCopy)
-      //       console.log(docRef.id)
-      //       toast.success('Payment Succesfull, Order Taken')
-      //       router.push(`/order/${docRef.id}`)
-      //     } catch (error) {
-      //       toast.error('Connection Problem')
-      //       console.log(error)
-      //       setLoading(false)
-      //     }
-      //   },
-      //   onCancel(){
-      //     toast.error('Poor Connection, Please Try Again')
-      //   }
-      // })
-      const docRef = await addDoc(collection(db,  'invoice'),formDataCopy)
-     console.log(docRef.id)
-      toast.success('Payment Succesfull, Order Taken')
-      router.push(`/order/${docRef.id}`)
-      
-    } else {
-      try {
-        const docRef = await addDoc(collection(db,  'invoice'),formDataCopy)
-        toast.success('Order Taken')
-        router.push(`/order/${docRef.id}`)
-      } catch (error) {
-        toast.error('Connection Problem')
-        console.log(error)
-        setLoading(false)
+    if(formData.firstName  === ''){
+      toast.error('Fill in First Name')
+    }else if(formData.lastName  === ''){
+      toast.error('Fill in Last Name')
+    }else if(formData.email  === ''){
+      toast.error('Fill in Email')
+    }else if(formData.phone  === 0){
+      toast.error('fill in Phone Number')
+    }else if(formData.streetAddress  === '' || formData.city === '' || formData.postal === 0){
+      toast.error('Fill in Shipping Details')
+    }else if(shipping === 0){
+      toast.error('Pick a Shipping Method')
+    }else if(payment === ''){
+      toast.error('Pick a Payment Method')
+    }else{
+      setLoading(true)
+   
+      setGoods(cart)
+      if(payment === 'Card'){
+        setisPaid(true)
+      }
+      const formDataCopy = {
+        ...formData,
+        timeStamp:serverTimestamp(),
+        userRef: auth.currentUser.uid,
+        payment,
+        shipping,
+        isPaid,
+        Total
+      }
+      if(payment !== 'cash'){
+        const paystack = new PaystackPop()
+        paystack.newTransaction({
+          key:"pk_test_5e8fb19405d0aeb9965c6ef8fe96d0265d059926",
+          amount: Total*100,
+          firstName,
+          lastName,
+          email,
+          async onSuccess(){
+            try {
+              const docRef = await addDoc(collection(db,  'invoice'),formDataCopy)
+              toast.success('Payment Succesfull, Order Taken')
+              dispatch({
+                type:CartActions.Clear_Cart
+              })
+              router.push(`/order/${docRef.id}`)
+            } catch (error) {
+              toast.error('Connection Problem')
+              setLoading(false)
+            }
+          },
+          onCancel(){
+            toast.error('Poor Connection, Please Try Again')
+            router.push('/')
+          }
+        })
+  
+      } else {
+        try {
+          const docRef = await addDoc(collection(db,  'invoice'),formDataCopy)
+          toast.success('Order Taken')
+          router.push(`/order/${docRef.id}`)
+          dispatch({
+            type:CartActions.Clear_Cart
+          })
+        } catch (error) {
+          toast.error('Connection Problem')
+          console.log(error)
+          setLoading(false)
+        }
       }
     }
+
+    
     
     
     

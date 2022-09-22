@@ -22,8 +22,6 @@ const Display:React.FC = () => {
 
   if(auth.currentUser !== null){
     const name = auth.currentUser.displayName
-    console.log(auth.currentUser.displayName)
-    console.log(name)
     return <div>
       <Link href={'/user/dashboard'}><p className='text-3xl font-bold text-white align-middle m-0 cursor-pointer'>{name[0]}</p></Link> 
       </div>

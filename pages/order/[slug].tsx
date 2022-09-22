@@ -36,7 +36,6 @@ const Invoice = () => {
   const [loading, setLoading] = useState(true)
   const {query} = useRouter()
   const param = query.slug as string
-  console.log(param) 
 
   useEffect( () => {
     const getInvoice = async() => {
@@ -44,7 +43,6 @@ const Invoice = () => {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
         setProduct(docSnap.data() as invoice)
         setLoading(false)
        
@@ -62,7 +60,6 @@ const Invoice = () => {
       content: () => componentRef.current,
     });
   
-// 
 if (loading){
   return (<div className='h-[700px] w-full flex items-center justify-center'>Loading...</div>)
 }
@@ -78,10 +75,10 @@ console.log(date)
           <div className='flex Sm:justify-between flex-col Sm:flex-row  Sm:items-center '>
             <p className='m-0 text-3xl font-medium mb-2 Sm:mb-0 text-gray-600'>INVOICE</p>
             <div className='Sm:w-[30%] w-full Sm:text-end flex flex-col'>
-            <div className='flex items-center justify-end' >
+              <div className='flex items-center Sm:justify-end' >
                   <Image src={logo} width={50}  height={50} color='black'/>
                   <span className=' font-semibold  text-2xl '>Falz-Store</span>
-            </div>
+              </div>
               <span className='m-0 '>Dutse Baupma,</span>
               <span className='m-0'> Bwari, Abuja,</span>
               <span className='m-0'>Nigeria</span>
