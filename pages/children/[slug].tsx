@@ -1,54 +1,18 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { GetServerSideProps, GetStaticProps } from 'next'
-import { product } from '../context/products/products';
-import { getAllProducts, getAllProductsA, getChillProducts} from '../utils/actions';
-import PagesTop from '../components/body/pagesTop';
-import Products from '../components/body/Products';
+import PagesTop from '../../components/body/pagesTop'
+import Products from '../../components/body/Products'
+import { product } from '../../context/products/products'
 import { Button, Dropdown, Menu } from 'antd';
-import { HomePageProps } from './product/[slug]';
-import { GetStaticPaths } from 'next'
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Navigation, Pagination } from "swiper";
-
-import Link from 'next/link';
-import { categoryArr } from '../data/category';
+import { getAllProductsA } from '../../utils/actions'
 
 
-interface pathProp {
-  path:string | string[]
-}
-
-
-// export const getStaticProps: GetStaticProps<HomePageProps>= async ({param}) => {
-//   const products:product[] = await getPatProducts(param)
-//   return { props: { 
-//     products,
-//   } };
-// };
-
-
-// export const getStaticPaths: GetStaticPaths<pathProp> = async () => {
-
-//   const products = await getAllProductsA()
-//   const paths = products.map((productU) => ({params: {parent: productU.parent}}) )
-//   return {
-//     paths: paths,
-//     fallback: false
-//   }
-// }
-
-
-const CategoryPage = () => {
+const Children = () => {
   const [Allproduct, setAllroduct] = useState<product[]>([])
   const [loading, setLoading] = useState(true)
   const [sort, setSort] = useState(0)
-  const [category, setCategory] = useState<product[]>([])
   const {query} = useRouter()
-  const param = query.slug as string
+  const param = query.slug
   console.log(query)
 
   const menu = (
@@ -83,14 +47,12 @@ const CategoryPage = () => {
   }, [])
 
   const find = Allproduct.filter(obj => {
-    return obj.parent === param
+    return obj.children == param
   })
-
-
+  console.log(find)
   
   
   console.log(Allproduct)
-  
   const Descending = [...find].sort((a, b) => b.price - a.price);
   // console.log(numDescending);
 
@@ -104,10 +66,8 @@ const CategoryPage = () => {
 
   return (
     <div className='p-6 h-2/4 bg-gray-50'>
-      <div >
       <PagesTop />
-    </div>      
-    <div className=' flex justify-between items-center my-5 bg-orange-200 p-2 rounded'>
+      <div className=' flex justify-between items-center my-5 bg-orange-200 p-2 rounded'>
         <p className='align-middle m-0'>Total <span className='font-semibold'>{find.length}</span>  items Found</p>
         <div>
           <Dropdown overlay={menu} placement="bottomLeft" arrow={{ pointAtCenter: true }}>
@@ -137,4 +97,4 @@ const CategoryPage = () => {
   )
 }
 
-export default CategoryPage
+export default Children

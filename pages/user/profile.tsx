@@ -5,7 +5,6 @@ import {MdOutlineDashboardCustomize} from 'react-icons/md';
 import { GrUnorderedList} from 'react-icons/gr';
 import { AiOutlineSetting} from 'react-icons/ai';
 import {AiOutlineFileText} from 'react-icons/ai';
-import { RiShoppingBag3Fill} from 'react-icons/ri';
 import { signOut } from 'firebase/auth';
 import {GrCloudUpload} from 'react-icons/gr'
 import { auth } from '../../firebase.config';
@@ -34,32 +33,31 @@ const Profile = () => {
   return (
     <div className='py-8 px-4 sm:px-8 flex flex-col md:flex-row bg-gray-50 md:justify-between'>
      <div className=' h-[20rem] md:w-[25%] rounded-lg bg-white p-6 text-sm md:sticky top-32'>
-        <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4'>
+     <Link href={'/user/dashboard'}>
+        <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-md p-2 my-4'>
           <MdOutlineDashboardCustomize />
-          <Link href={'/user/dashboard'}>
             <p className='mx-2 cursor-pointer m-0'>Dashboard</p>
-          </Link>
         </div>
-        <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4'>
+        </Link>
+        <Link href={'/user/order'}>
+        <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-md p-2 my-4'>
           <GrUnorderedList />
-          <Link href={'/user/order'}>
             <p className='mx-2 cursor-pointer m-0'>My Order</p>
-          </Link>
         </div>
-
-        <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4'>
+        </Link>
+        <Link href={'/user/profile'}>
+        <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-md p-2 my-4'>
           <AiOutlineSetting />
-          <Link href={'/user/profile'}>
             <p className='mx-2 cursor-pointer m-0'>Update Profile</p>
-          </Link>
         </div>
-        <div className='flex items-center hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4'>
+        </Link>
+        <Link href={'/user/password'}>
+        <div className='flex items-center hover:text-emerald-600 hover:bg-gray-50  rounded-md p-2 my-4'>
           <AiOutlineFileText />
-          <Link href={'/user/password'}>
             <p className='mx-2 cursor-pointer m-0'>Change Password</p>
-          </Link>
         </div>
-        <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-xl p-2 my-4 cursor-pointer' onClick={logOut}>
+        </Link>
+        <div className='flex items-center py-2 hover:text-emerald-600 hover:bg-gray-50  rounded-md p-2 my-4 cursor-pointer' onClick={logOut}>
           <FiUnlock />
           <p className='mx-2 cursor-pointer m-0' >Logout</p>
         </div>

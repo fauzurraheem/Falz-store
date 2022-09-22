@@ -8,12 +8,16 @@ import {AiOutlineDelete} from 'react-icons/ai'
 import {BiShoppingBag} from 'react-icons/bi'
 import { Badge } from 'antd';
 import { CartActions } from '../../context/cart/cartReducer';
-import Link from 'next/link';
 import { RiShoppingBag3Fill} from 'react-icons/ri';
+import { toast } from 'react-toastify';
+import { auth } from '../../firebase.config';
+import { useRouter } from 'next/router';
+
+
 const CartDrawer = () => {
   const [open, setOpen] = useState(false);
   const {state:{cart}, dispatch} = useContext(CartContext)
-
+  const router = useRouter()
   const showDrawer = () => {
     setOpen(true);
   };
@@ -25,7 +29,18 @@ const CartDrawer = () => {
 
   const total = cart.reduce((product, amt) => (amt.__v * amt.price) + product, 0 )
   
+  const proceed = () => {
 
+    if (cart.length <= 0) {
+      toast.error('Order before you can proceed')
+      onClose()
+    }else if(auth.currentUser === null){
+      toast.error('Login to place an Order')
+    }else{
+      onClose()
+      router.push('/checkout')
+    }
+  }
   
 
   return (
@@ -36,10 +51,10 @@ const CartDrawer = () => {
       </Button>
     </Badge>
       
-      <Drawer title={<div className='flex text-base items-center font-semibold '><BiShoppingBag size={20} /> <p className='m-0 ml-2'>Shopping Cart</p></div>} placement="right"headerStyle={{backgroundColor:'rgb(238, 242, 255)'}} footer={ <Link href={'/checkout'}><div className='h-12 bg-emerald-500 rounded-lg p-2 hover:bg-emerald-600 flex justify-between' onClick={onClose}>
+      <Drawer title={<div className='flex text-base items-center font-semibold '><BiShoppingBag size={20} /> <p className='m-0 ml-2'>Shopping Cart</p></div>} placement="right"headerStyle={{backgroundColor:'rgb(238, 242, 255)'}} footer={<div className='h-12 bg-emerald-500 rounded-lg p-2 hover:bg-emerald-600 flex justify-between' onClick={proceed}>
         <p className='text-white text-base m-0 align-middle mt-1'>Proceed To Checkout</p>
-        <p className='bg-white text-emerald-500 w-[30%] h-full rounded-lg align-middle text-base font-semibold flex items-center justify-center p-2'>${total}</p>
-      </div></Link>}   onClose={onClose} open={open} bodyStyle={{padding:'0'}}>
+        <p className='bg-white text-emerald-500 w-[30%] h-full rounded-lg align-middle text-base font-semibold flex items-center justify-center p-2'>N{total}</p>
+      </div>}   onClose={onClose} open={open} bodyStyle={{padding:'0'}}>
         {cart.length === 0 &&
             <div className='w-full h-full flex items-center flex-col justify-center'>
               <span className='bg-gray-50 text-emerald-500 p-2 rounded-full'>
@@ -57,9 +72,9 @@ const CartDrawer = () => {
               </div>
               <div className='p-1 ml-2 w-[85%]'>
                 <p className='m-0 text-gray-600'>{item.title}</p>
-                <p className='mb-1 text-xs text-gray-400'>Item Price ${item.price}</p>
+                <p className='mb-1 text-xs text-gray-400'>Item Price N{item.price}</p>
                 <div className='flex items-center justify-between text-sm font-normal'>
-                  <div>${item.price * item.__v}</div>
+                  <div>N{item.price * item.__v}</div>
                   <div className='p-1 bg-white border border-gray-100 rounded-lg w-[30%] flex justify-between items-center' >
                       <AiOutlineMinus onClick={() => dispatch({type:CartActions.Reduce_Amount,payload: item})}/>
                     <span>{item.__v}</span>

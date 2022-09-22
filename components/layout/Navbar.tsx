@@ -10,7 +10,6 @@ import { BiHomeAlt } from 'react-icons/bi';
 import { HiMenuAlt1 } from 'react-icons/hi';
 import Link from 'next/link';
 import { AuthContext } from '../../context/auth/authcontext';
-import { auth } from '../../firebase.config';
 import { useRouter } from 'next/router';
 import Display from './DisplayName';
 import { RiArrowDownSFill } from 'react-icons/ri';
@@ -25,11 +24,10 @@ import {HiPhoneIncoming} from 'react-icons/hi'
 import {AiOutlineFileText} from 'react-icons/ai'
 import {BsExclamationCircle} from 'react-icons/bs'
 import {MdPeopleOutline} from 'react-icons/md'
-import logoC from '../../assets/webp/logolight.svg'
+import logo from '../../assets/webp/logo.svg'
 import Image from 'next/image';
 import { Button, Drawer } from 'antd';
 import CartDrawer from '../cart/CartDrawer';
-import { DownOutlined } from '@ant-design/icons';
 import { Tree } from 'antd';
 import type { DataNode, TreeProps } from 'antd/es/tree';
 
@@ -109,7 +107,7 @@ const [Input, setInput] = useState('')
           <div className='flex items-center '>
             <FiPhoneCall />
             <p className='pl-1 text-gray-700 m-0' >
-              We are available 24/7, Need help? Call Us: <span className='text-emerald-500 font-semibold'>+01234560352</span>
+              I are available 24/7, Need help? Call Me: <span className='text-emerald-500 font-semibold'>+2349077415487</span>
             
             </p>
           </div>
@@ -125,8 +123,9 @@ const [Input, setInput] = useState('')
         <div className=''>
         <div className='flex items-center justify-center md:justify-between bg-emerald-500	px-9 static top-0 h-[65px]  '>
           <Link href={'./'}>
-            <div className='w-1/4 md:flex	hidden' >
-                  <Image src={logoC} width={100}  height={50} color='black'/>
+            <div className='w-1/4 md:flex	hidden items-center' >
+                  <Image src={logo} width={50}  height={50} color='black'/>
+                  <span className=' font-semibold text-white text-2xl '>Falz-Store</span>
             </div>
           </Link>     
             <form className='flex items-center h-3/5 bg-white p-2 rounded-md w-3/4 ' >
@@ -267,12 +266,17 @@ const [Input, setInput] = useState('')
           <HiMenuAlt1 color='white' size={25} />
         </Button>
         <Link href={'/'}>
-        <BiHomeAlt color='white' size={25} />
+          <a>
+            <BiHomeAlt color='white' size={25} />
+          </a>
         </Link>
         <CartDrawer />
         <Display />
       </div>
-      <Drawer title={<Image src={logoC} width={100}  height={50} color='black'/>
+      <Drawer title={<div className='flex items-center' >
+                  <Image src={logo} width={50}  height={50} color='black'/>
+                  <span className=' font-semibold text-white text-2xl '>Falz-Store</span>
+            </div>
         } closeIcon={<RiCloseCircleFill color='white' size={30} />} headerStyle={{backgroundColor:'rgb(16 ,185, 129)'}} placement="left" onClose={onClose} open={open} width={300}>
       <div>
         <p className='text-lg font-bold mb-2'>All Categories</p>

@@ -3,7 +3,6 @@ import { MdOutlineLocalShipping } from 'react-icons/md';
 import { FiPhoneCall} from 'react-icons/fi';
 import { MdPayment} from 'react-icons/md';
 import { FiGift} from 'react-icons/fi';
-import { FaShoppingBag} from 'react-icons/fa';
 import appstore from '../../assets/appstore.svg'
 import google from '../../assets/google.svg'
 import p from '../../assets/p.jpg'
@@ -15,7 +14,7 @@ import { BsFacebook} from 'react-icons/bs';
 import { AiFillTwitterCircle} from 'react-icons/ai';
 import image00 from '../../assets/webp/image00.webp'
 import image2 from '../../assets/webp/image2.webp'
-import logo from '../../assets/webp/logocolor.svg'
+import logo from '../../assets/webp/logo.svg'
 
 
 
@@ -27,12 +26,12 @@ const Footer = () => {
           <div className='hidden sm:flex items-center'>
           <Image src={image00} width={1000} height={1000} />
           </div>
-          <div className='text-base	mx-20'>
-            <h3 className='text-center text-2xl	font-bold'>Get Your Daily Needs From Our KachaBazar Store</h3>
+          <div className='text-base'>
+            <h3 className='text-center text-2xl	font-bold '>Get Your Daily Needs From Our KachaBazar Store</h3>
             <p className='text-center	'>
             There are many products you will find our shop, Choose your daily necessary product from our KachaBazar shop and get some special offer.
             </p>
-            <div className='flex justify-center '>
+            <div className='sm:flex justify-center hidden '>
               <Image src={appstore} width={200} height={200} />
               <Image src={google} width={250} height={250}  />
             </div>
@@ -61,7 +60,7 @@ const Footer = () => {
         </div>
         <hr className="hr-line">
           </hr>
-        <div className='h-[45%] pt-10 px-12' >
+        <div className='h-[45%] pt-10 Sm:px-12 px-2' >
           <div className=' grid lg:grid-cols-4 grid-cols-2 sm:grid-cols-3 gap-7	text-sm mb-8'>
             <div>
               <h6 className='text-lg py-3'>Company</h6>
@@ -84,31 +83,34 @@ const Footer = () => {
             <div>
               <h6 className='text-lg py-3'>My Account</h6>
               <ul className='text-gray-500'>
-                <li className='hover:text-gray-600	active:text-gray-600	'>Dashboard</li>
-                <li className='hover:text-gray-600	active:text-gray-600	'>My Orders</li>
-                <li className='hover:text-gray-600	active:text-gray-600	'>Recent Orders</li>
-                <li className='hover:text-gray-600	active:text-gray-600	'>Updated Profile</li>
+                <li className='hover:text-green-400	active:text-green-400'>Dashboard</li>
+                <li className='hover:text-green-400	active:text-green-400'>My Orders</li>
+                <li className='hover:text-green-400	active:text-green-400'>Recent Orders</li>
+                <li className='hover:text-green-400	active:text-green-400'>Updated Profile</li>
               </ul>
             </div>
             <div>
               <div></div>
               <ul className='text-gray-500'>
                 <div className='flex'>
-                  <Image src={logo} width={100}  height={50} color='black'/>
+                  <div className='flex items-center ' >
+                    <Image src={logo} width={40}  height={40} color='black'/>
+                    <span className=' font-semibold text-xl text-gray-700'>Falz-Store</span>
+                  </div>
                 </div>
-                <li>987 Andre Plain Suite High Street 838,</li>
-                <li>Lake Hestertown, USA</li>
-                <li>Tell: 02.356.1666</li>
-                <li>Email: ccruidk@test.com</li>
+                <li>Dutse Baupma,</li>
+                <li>Abuja, Nigeria</li>
+                <li>Tell: 09077415487</li>
+                <li>Email: </li>
+                <li className='hidden sm:block'>odefunsofauzurraheem@gmail.com</li>
               </ul>
             </div>
           </div>
           <div>
             <hr className="hr-line">
             </hr>
-            <div className='.border-gray-50 shadow-sm bg-gray-50 	py-6 px-6 grid grid-cols-3 border border-gray-50	rounded-xl'>
-            
-            <div>
+            <div className='.border-gray-50 shadow-sm bg-gray-50 	py-6 px-6 grid Sm:grid-cols-3 border border-gray-50	rounded-xl'>
+            <div className=''>
               <p className='text-center'>Follow Us</p>
               <div className='flex my-6 justify-evenly'>
                 <BsFacebook color='blue' size={30}/>
@@ -118,11 +120,11 @@ const Footer = () => {
                 <BsLinkedin  color='blue' size={30}/>
               </div> 
             </div>
-            <div className='hidden md:block'>
+            <div className='hidden Sm:block'>
               <p className='text-center'> Contact Us</p>
-              <p className='text-center  text-2xl font-bold my-6 text-emerald-500' > +012345-67900</p>
+              <p className='text-center  text-2xl font-bold my-6 text-emerald-500' > +2349077415487</p>
             </div>
-            <div className='hidden md:block'>
+            <div className='hidden Sm:block'>
               <p className='text-center'>paypal</p>
               <Image src={p} height={100} width={300} />
             </div>

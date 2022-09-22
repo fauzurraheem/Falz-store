@@ -5,7 +5,7 @@ import {GrFacebookOption} from 'react-icons/gr';
 import {AiOutlineGoogle} from 'react-icons/ai';
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { toast } from 'react-toastify';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 interface Props {
   setSignIn: React.Dispatch<React.SetStateAction<boolean>> 
@@ -13,9 +13,7 @@ interface Props {
 }
 
 const SignInForm:React.FC<Props> = ({setSignIn, setOpen}) => {
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [signUp, setSignUp] = useState(false)
   const [password, setPassword] = useState('')
   const auth = getAuth()
   const router = useRouter()
@@ -28,7 +26,7 @@ const SignInForm:React.FC<Props> = ({setSignIn, setOpen}) => {
        setEmail('')
        setPassword('')
        router.push('/')
-       toast.success('Registration sucessful')
+       toast.success('LogIn sucessful')
         setOpen(false)
       } catch (error) {
         toast.error('invalid credentials')
@@ -43,25 +41,11 @@ const SignInForm:React.FC<Props> = ({setSignIn, setOpen}) => {
   
       signInWithPopup(auth, provider)
     .then((result) => {
-      // // This gives you a Google Access Token. You can use it to access the Google API.
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential.accessToken;
-      // // The signed-in user info.
-      // const user = result.user;
-      // // ...
-      // console.log(user)
-      toast.success('Registration sucessful')
+      toast.success('LogIn sucessful')
       setOpen(false)
     }).catch((error) => {
-      // // Handle Errors here.
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // // The email of the user's account used.
-      // const email = error.customData.email;
-      // // The AuthCredential type that was used.
-      // const credential = GoogleAuthProvider.credentialFromError(error);
-      // // ...
-      toast.error('Poor connection, Please try again')
+    
+      toast.error('Poor Connection')
     });
     
   }
@@ -84,7 +68,7 @@ const SignInForm:React.FC<Props> = ({setSignIn, setOpen}) => {
           <label htmlFor="email">Email</label>
           <div className='border border-gray-300  rounded flex items-center my-2 px-2'>
             <HiOutlineMail color='rgb(55, 65 ,81)' size={20}/>
-            <input type="text" name='email' className='outline-0 p-3' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <input type="text" name='email' className='outline-none w-full p-3' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
           </div>
           
         </div>
@@ -92,11 +76,11 @@ const SignInForm:React.FC<Props> = ({setSignIn, setOpen}) => {
           <label htmlFor="password">Password</label>
           <div className='border border-gray-300  rounded flex items-center my-2 px-2'>
             <RiLockPasswordLine color='rgb(55, 65 ,81)' size={20}/>
-            <input type="text" name='password' className='outline-0 p-3' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <input type="text" name='password' className='outline-none w-full p-3' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
           </div>
           
         </div>
-        <p className='my-4 text-gray-900 underline decoration-solid hover:no-underline	'>Forget password?</p>
+        <p className='my-4 text-gray-900 underline decoration-solid hover:no-underline	'>Forgot password?</p>
      
         <button className='py-3 text-center w-full bg-emerald-500 hover:bg-emerald-700  text-white text-xl rounded-lg' type="submit">Login</button>
       </form>

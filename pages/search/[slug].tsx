@@ -16,6 +16,7 @@ import { categoryArr } from '../../data/category'
 
 const Search = () => {
   const [Allproduct, setAllroduct] = useState<product[]>([])
+  const [loading, setLoading] = useState(true)
   const [sort, setSort] = useState(0)
   const {query} = useRouter()
   const param = query.slug as string
@@ -47,6 +48,7 @@ const Search = () => {
       const product = await getAllProductsA()
 
       setAllroduct(product)
+      setLoading(false)
     }
     Product()
     
@@ -70,39 +72,14 @@ const Search = () => {
 
   const Ascending = [...Regex].sort((a, b) => a.price - b.price);
 
+  if (loading ){
+    return <div className='h-[700px] w-full flex justify-center'>Loading...</div>
+  }
 
   return (
   <div className='p-6 h-2/4 bg-gray-50'>
     <div >
-      <div className='grid md:grid-cols-3 sm:grid-cols-2 gap-4'> 
-          <div className='flex flex-col items-center rounded-lg text-white p-4' style={{backgroundImage:'url(/image3.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'bottom',width:'100%',height:'10rem' }}>
-            <span className=' font-medium'>Taste of</span>
-            <span className='text-xl font-semibold'>Fresh & Natural</span>
-            <span className='text-sm'>Weekend discount offer</span>
-            <Link href={'/children/Fresh Vegetable'}>
-            <button className='bg-emerald-400 text-xs py-2 px-4 rounded-3xl mt-4'>Shop Now</button>
-            </Link>
-            
-          </div>
-          <div className='flex flex-col items-center rounded-lg  text-white p-4' style={{backgroundImage:'url(/image4.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',height:'10rem',width:'100%', backgroundPosition:'bottom',}}>
-            <span className=' font-medium'>Taste of</span>
-            <span className='text-xl font-semibold'>Fish & Meat</span>
-            <span className='text-sm'>Weekend discount offer</span>
-            <Link href={'/Fish & Meat'}>
-            <button className='bg-emerald-400 text-xs py-2 px-4 rounded-3xl mt-4'>Shop Now</button>
-            </Link>
-            
-          </div>
-          <div className='flex flex-col items-center rounded-lg  text-white p-4' style={{backgroundImage:'url(/image5.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'bottom', height:'10rem',width:'100%'}}>
-            <span className=' font-medium'>Taste of</span>
-            <span className='text-xl font-semibold'>Bread & Bakery</span>
-            <span className='text-sm'>Weekend discount offer</span>
-            <Link href={'/Biscuits & Cakes'}>
-            <button className='bg-emerald-400 text-xs py-2 px-4 rounded-3xl mt-4'>Shop Now</button>
-            </Link>
-            
-          </div>
-      </div>
+      <PagesTop />
       <div>
       <Swiper
         slidesPerView={7}

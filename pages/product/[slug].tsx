@@ -32,6 +32,7 @@ export interface HomePageProps {
 // }
 
 const ProductDetails = () => {
+  const [loading, setLoading] = useState(true)
   const [product, setProduct] = useState<product>({} as product)
   const [related, setRelated] = useState<product[]>([])
 
@@ -50,6 +51,7 @@ const ProductDetails = () => {
 
       // transform()
       setProduct(product)
+      setLoading(false)
       console.log(product+ 'you')
     }
     Product()
@@ -86,10 +88,12 @@ const ProductDetails = () => {
     })
 
   }
-  
+  if (loading ){
+    return <div className='h-[700px] w-full flex justify-center'>Loading...</div>
+  }
   
  
-  const sku = product._id
+  const sku = product._id.slice(18).toLowerCase()
   console.log(related)
   return (
     <div className='px-1 Sm:px-10 py-3 Sm:py-6 bg-gray-50'>
@@ -118,7 +122,7 @@ const ProductDetails = () => {
             <div className=''>
               <h3 className='text-gray-900 text-xl font-bold'>{product.title}</h3>
               <h3 className='font-bold  text-gray-500'>SKU: <span className=' text-gray-700'>{sku}</span></h3>
-              <h2 className='font-semibold text-xl mb-0'>${product.price}</h2>
+              <h2 className='font-semibold text-xl mb-0'>N{product.price}</h2>
               {product.quantity !== 0 ? <span className='py-1 px-2 bg-emerald-300 text-emerald-600 text-xs rounded-2xl font-semibold'>In stock</span> : <span className='py-1 px-2 bg-orange-500 text-white text-xs rounded-2xl'>stock out</span>}
               <p className='text-gray-700 text-sm mt-2'>{product.description}</p>
               <div className='flex justify-between my-6 flex-col ph:flex-row'>

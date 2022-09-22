@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation, Pagination } from "swiper";
+import { Pagination } from "swiper";
 import { categoryArr } from '../../data/category';
 import Link from 'next/link';
 
@@ -12,7 +12,7 @@ const PagesTop = () => {
   return (
     <div >
       <div className='grid md:grid-cols-3 sm:grid-cols-2 gap-4'> 
-          <div className='flex flex-col items-center rounded-lg text-white p-4' style={{backgroundImage:'url(./image3.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'bottom',width:'100%',height:'10rem' }}>
+          <div className='flex flex-col items-center rounded-lg text-white p-4' style={{backgroundImage:'url(/image3.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'bottom',width:'100%',height:'10rem' }}>
             <span className=' font-medium'>Taste of</span>
             <span className='text-xl font-semibold'>Fresh & Natural</span>
             <span className='text-sm'>Weekend discount offer</span>
@@ -21,7 +21,7 @@ const PagesTop = () => {
             </Link>
             
           </div>
-          <div className='flex flex-col items-center rounded-lg  text-white p-4' style={{backgroundImage:'url(./image4.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',height:'10rem',width:'100%', backgroundPosition:'bottom',}}>
+          <div className='flex flex-col items-center rounded-lg  text-white p-4' style={{backgroundImage:'url(/image4.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',height:'10rem',width:'100%', backgroundPosition:'bottom',}}>
             <span className=' font-medium'>Taste of</span>
             <span className='text-xl font-semibold'>Fish & Meat</span>
             <span className='text-sm'>Weekend discount offer</span>
@@ -30,7 +30,7 @@ const PagesTop = () => {
             </Link>
             
           </div>
-          <div className='flex flex-col items-center rounded-lg  text-white p-4' style={{backgroundImage:'url(./image5.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'bottom', height:'10rem',width:'100%'}}>
+          <div className='flex flex-col items-center rounded-lg  text-white p-4' style={{backgroundImage:'url(/image5.webp)',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'bottom', height:'10rem',width:'100%'}}>
             <span className=' font-medium'>Taste of</span>
             <span className='text-xl font-semibold'>Bread & Bakery</span>
             <span className='text-sm'>Weekend discount offer</span>
@@ -40,7 +40,7 @@ const PagesTop = () => {
             
           </div>
       </div>
-      <div>
+      <div className='hidden sm:block'>
       <Swiper
         slidesPerView={7}
         spaceBetween={30}

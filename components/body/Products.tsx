@@ -90,7 +90,7 @@ const Products:React.FC<ProductProps> = ({product}) => {
           <span className='text-gray-300 text-'>{product.unit}</span>
           <h3 className='text-gray-500'>{product.title}</h3>
           <div className='flex justify-between items-center'>
-            <h2 className='font-semibold text-xl'>${product.price} {product.discount > 0  && <span className='text-sm text-gray-400 line-through align-middle font-normal'>${product.originalPrice}</span>}</h2>
+            <h2 className='font-semibold text-xl'>N{product.price} {product.discount > 0  && <span className='text-sm text-gray-400 line-through align-middle font-normal'>N{product.originalPrice}</span>}</h2>
             {
                 cart.some(p => p._id === product._id ) ? <div className='p-1 border text-white border-gray-200 bg-emerald-500 flex items-center rounded-lg'>
                   <span onClick={reduceA} className='mx-1 font-semibold cursor-pointer text-gray-300' ><AiOutlineMinus /></span>
@@ -108,7 +108,7 @@ const Products:React.FC<ProductProps> = ({product}) => {
               <h3 className='text-gray-900 text-xl font-bold'>{product.title}</h3>
               {product.quantity !== 0 ? <span className='py-1 px-2 mb-7 bg-emerald-300 text-emerald-600 text-xs rounded-2xl font-semibold'>In stock</span> : <span className='py-1 px-2 bg-orange-500 text-white text-xs rounded-2xl'>stock out</span>}
               <p className='text-gray-500 text-sm'>{product.description}</p>
-              <h2 className='font-semibold text-xl'>${product.price}</h2>
+              <h2 className='font-semibold text-xl'>N{product.price}</h2>
               <div className='flex justify-between'>
                 <div className='p-1 px-4 w-[45%] border border-gray-400 flex justify-between rounded-lg  '>
 

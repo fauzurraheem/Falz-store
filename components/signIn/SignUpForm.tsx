@@ -1,14 +1,11 @@
 import React, { useContext, useState } from 'react'
 import {HiOutlineMail} from 'react-icons/hi';
+import {BsPersonCircle} from 'react-icons/bs';
 import {RiLockPasswordLine} from 'react-icons/ri';
 import {GrFacebookOption} from 'react-icons/gr';
 import {AiOutlineGoogle} from 'react-icons/ai';
-// import { useAuth } from '../context/auth/authcontext';
 import { createUserWithEmailAndPassword, getAuth,  updateProfile,} from 'firebase/auth'
-
 import { toast } from 'react-toastify';
-
-import { AuthContext } from '../../context/auth/authcontext';
 import { useRouter } from 'next/router';
 import { signInWithPopup, GoogleAuthProvider, } from "firebase/auth";
 
@@ -50,7 +47,7 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
      
         
       } catch (error) {
-        toast.error('invalid credentials')
+        toast.error('Poor Connection')
       }
   }
 
@@ -59,24 +56,9 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
 
     signInWithPopup(auth, provider)
   .then((result) => {
-    // // This gives you a Google Access Token. You can use it to access the Google API.
-    // const credential = GoogleAuthProvider.credentialFromResult(result);
-    // const token = credential.accessToken;
-    // // The signed-in user info.
-    // const user = result.user;
-    // // ...
-    // console.log(user)
     toast.success('Registration sucessful')
     setOpen(false)
   }).catch((error) => {
-    // // Handle Errors here.
-    // const errorCode = error.code;
-    // const errorMessage = error.message;
-    // // The email of the user's account used.
-    // const email = error.customData.email;
-    // // The AuthCredential type that was used.
-    // const credential = GoogleAuthProvider.credentialFromError(error);
-    // // ...
     toast.error('Poor connection, Please try again')
   });
   
@@ -95,8 +77,8 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
       <div className='flex flex-col '>
           <label htmlFor="name">Name</label>
           <div className='border border-gray-300  rounded flex items-center my-2 px-2'>
-            <HiOutlineMail color='rgb(55, 65 ,81)' size={20}/>
-            <input type="text" name='name' className='outline-0 p-3 focus:bg-white w-full rounded' placeholder='Full Name' value={name} onChange={(e) => setName(e.target.value)}/>
+            <BsPersonCircle color='rgb(55, 65 ,81)' size={20}/>
+            <input type="text" name='name' className=' p-3 focus:transperent w-full bg-white active:transperent  rounded outline-none' style={{backgroundColor:'transparent'}} placeholder='Full Name' value={name} onChange={(e) => setName(e.target.value)} />
           </div>
         </div>
         <div className='flex flex-col'>
