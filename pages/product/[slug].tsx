@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import { product } from '../../context/products/products';
-import { getAllProductsA, getChillProducts, getSlugProducts } from '../../utils/actions';
+import {getChillProducts, getSlugProducts } from '../../utils/actions';
 import { MdOutlineLocalShipping } from 'react-icons/md'
 import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
 import { BiHomeAlt } from 'react-icons/bi';
@@ -38,7 +38,6 @@ const ProductDetails = () => {
 
   const {query} = useRouter()
   const param = query.slug as string
-  console.log(param)
 
   const {state:{cart},dispatch} = useContext(CartContext)
  const found = cart.find( p =>p._id === product._id ) 
@@ -52,7 +51,6 @@ const ProductDetails = () => {
       // transform()
       setProduct(product)
       setLoading(false)
-      console.log(product+ 'you')
     }
     Product()
 
@@ -94,7 +92,6 @@ const ProductDetails = () => {
   
  
   const sku = product._id.slice(18).toLowerCase()
-  console.log(related)
   return (
     <div className='px-1 Sm:px-10 py-3 Sm:py-6 bg-gray-50'>
       <ul className='flex'>

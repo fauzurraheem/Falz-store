@@ -20,6 +20,7 @@ interface Props {
 }
 
 const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
+  const [loading, setLoading] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -31,6 +32,15 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setLoading(true)
+
+    if(password.length <= 6){
+      setLoading(false)
+      return toast.error('Weak Password')
+    } else if(name === '' || email === '' || password === ''){
+      setLoading(false)
+      return toast.error('Invalid Credentials')
+    }
 
       try {
        await createUserWithEmailAndPassword(auth, email, password)
@@ -43,11 +53,13 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
        setPassword('')
        setOpen(false)
       router.push('/')
+      setLoading(false)
        toast.success('Registration sucessful')
        setOpen(false)
      
         
       } catch (error) {
+        setLoading(false)
         toast.error(error)
       }
 
@@ -55,13 +67,16 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
   }
 
   const loginWithGoogle = () => {
+    setLoading(true)
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
   .then((result) => {
     toast.success('Registration sucessful')
+    setLoading(false)
     setOpen(false)
   }).catch((error) => {
+    setLoading(false)
     toast.error('Poor connection, Please try again')
   });
   
@@ -77,30 +92,31 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
         <p className='text-center'>Create an account with email</p>
       </div>
       <form className='text-gray-500 text-sm text-left' onSubmit={handleSubmit}>
-      <div className='flex flex-col '>
+        <div className='flex flex-col mb-2'>
           <label htmlFor="name">Name</label>
-          <div className='border border-gray-300  rounded flex items-center my-2 px-2'>
+          <div className='flex items-center  h-10 mt-1'>
             <BsPersonCircle color='rgb(55, 65 ,81)' size={20}/>
-            <input type="text" name='name' className=' p-3 focus:transperent w-full bg-white active:transperent  rounded outline-none' style={{backgroundColor:'transparent'}} placeholder='Full Name' value={name} onChange={(e) => setName(e.target.value)} />
+            <input type="text" name='name' className='  h-full pl-2 ml-2 w-full border-b bg-white  rounded outline-none' style={{backgroundColor:'transparent'}} placeholder='Full Name' value={name} onChange={(e) => setName(e.target.value)} />
           </div>
         </div>
-        <div className='flex flex-col'>
+        <div className='flex mb-2 flex-col'>
           <label htmlFor="email">Email</label>
-          <div className='border border-gray-300  rounded flex items-center my-2 px-2'>
+          <div className='flex items-center  h-10 mt-1'>
             <HiOutlineMail color='rgb(55, 65 ,81)' size={20}/>
-            <input type="text" name='email' className='outline-0 p-3 w-full rounded bg-white' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <input type="text" name='email' className='outline-0 h-full border-b pl-2 ml-2 w-full rounded bg-white' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
           </div>
-          
         </div>
-        <div className='flex flex-col'>
+        <div className='flex mb-4 flex-col'>
           <label htmlFor="password">Password</label>
-          <div className='border border-gray-300  rounded flex items-center my-2 px-2'>
+          <div className='  rounded flex items-center h-10 mt-1'>
             <RiLockPasswordLine color='rgb(55, 65 ,81)' size={20}/>
-            <input type="text" name='password' className='outline-0 p-3 w-full focus:bg-white rounded' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="text" name='password' className='outline-0 h-full pl-2 ml-2 w-full border-b focus:bg-white rounded' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
-          
         </div>
-        <button className='py-3 text-center w-full bg-emerald-500 hover:bg-emerald-700  text-white text-xl rounded-lg' type="submit">Register</button>
+        {
+          !loading ? <button className='py-3 text-center w-full bg-emerald-500 hover:bg-emerald-700  text-white text-xl rounded-lg' type="submit">Register</button> :
+          <button className='py-3 text-center w-full bg-emerald-500 hover:bg-emerald-700  text-white text-xl rounded-lg' type="submit">Processing...</button>
+        }
       </form>
       <div>
         <div className='grid  grid-cols-1  md:grid-cols-2 m-4'>

@@ -2,25 +2,16 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import { product } from '../context/products/products';
-import { getAllProducts, getAllProductsA, getChillProducts} from '../utils/actions';
 import PagesTop from '../components/body/pagesTop';
 import Products from '../components/body/Products';
 import { Button, Dropdown, Menu } from 'antd';
-import { HomePageProps } from './product/[slug]';
-import { GetStaticPaths } from 'next'
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation, Pagination } from "swiper";
-
-import Link from 'next/link';
-import { categoryArr } from '../data/category';
 
 
-interface pathProp {
-  path:string | string[]
-}
+
+
 
 
 // export const getStaticProps: GetStaticProps<HomePageProps>= async ({param}) => {
@@ -46,10 +37,8 @@ const CategoryPage = () => {
   const [Allproduct, setAllroduct] = useState<product[]>([])
   const [loading, setLoading] = useState(true)
   const [sort, setSort] = useState(0)
-  const [category, setCategory] = useState<product[]>([])
   const {query} = useRouter()
   const param = query.slug as string
-  console.log(query)
 
   const menu = (
     <Menu

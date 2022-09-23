@@ -12,8 +12,7 @@ const Children = () => {
   const [loading, setLoading] = useState(true)
   const [sort, setSort] = useState(0)
   const {query} = useRouter()
-  const param = query.slug
-  console.log(query)
+  const param = query.slug as string
 
   const menu = (
     <Menu
@@ -49,7 +48,6 @@ const Children = () => {
   const find = Allproduct.filter(obj => {
     return obj.children == param
   })
-  console.log(find)
   
   
   console.log(Allproduct)
@@ -58,7 +56,6 @@ const Children = () => {
 
   const Ascending = [...find].sort((a, b) => a.price - b.price);
   // console.log(numAscending);
-  console.log(find)
 
   if (loading ){
     return <div className='h-[700px] w-full flex justify-center'>Loading...</div>

@@ -164,8 +164,8 @@ const Checkout = () => {
             <h1 className='text-base font-semibold text-gray-700'>.01 Personal Details</h1>
             <div className='grid Sm:grid-cols-2 gap-4'>
               <div className='grid grid-cols-1 gap-1 text-sm'>
-                <label htmlFor="name" className='text-gray-500'>Full Name</label>
-                <input type="text" name="firstName" className='py-3 px-3 rounded-md outline-none focus:border-emerald-500 border hover:border-emerald-500' placeholder='Full Name' value={formData.firstName} onChange={onMutate}/>
+                <label htmlFor="name" className='text-gray-500'>First Name</label>
+                <input type="text" name="firstName" className='py-3 px-3 rounded-md outline-none focus:border-emerald-500 border hover:border-emerald-500' placeholder='First Name' value={formData.firstName} onChange={onMutate}/>
               </div>
               <div className='grid grid-cols-1 gap-1 text-sm'>
                 <label htmlFor="phone" className='text-gray-500'>Phone/Mobile</label>

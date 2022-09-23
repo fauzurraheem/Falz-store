@@ -23,7 +23,7 @@ const Display:React.FC = () => {
   if(auth.currentUser !== null){
     const name = auth.currentUser.displayName
     return <>
-      <Link href={'/user/dashboard'}><p className='text-3xl font-bold text-white align-middle m-0 cursor-pointer'>{name && <>{name.charAt(0)}</>}</p></Link> 
+      <Link href={'/user/dashboard'}><p className='text-3xl font-bold text-white align-middle m-0 cursor-pointer'>{name && <>{name.charAt(0).toUpperCase()}</>}</p></Link> 
       </>
   }else{
     return  (<>

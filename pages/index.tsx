@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Products from '../components/body/Products'
 import { AuthContextProvider } from '../context/auth/authcontext'
@@ -228,7 +228,7 @@ const Home:React.FC<HomePageProps> = ({products,disProducts}) => {
               Quick Delivery to <span className='text-emerald-500'>Your Home</span> 
               </h3>
               <p className='text-sm mb-3'>
-              There are many products you will find our shop, Choose your daily necessary product from our KachaBazar shop and get some special offer. See Our latest discounted products from here and get a special discount.
+              There are many products you will find our shop, Choose your daily necessary product from our Falz-store and get some special offer. See Our latest discounted products from here and get a special discount.
               </p>
               <button className='text-xs bg-emerald-500 md:py-3 md:px-10  py-2 px-2   rounded-3xl text-gray-50 sm:w-[30%] w-[70%]'>
                 Download App

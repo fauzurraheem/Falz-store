@@ -12,9 +12,15 @@ import { RiShoppingBag3Fill} from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import { auth } from '../../firebase.config';
 import { useRouter } from 'next/router';
+import { Modal } from 'antd';
+import SignInForm from '../signIn/SignInForm';
+import SingUpForm from '../signIn/SignUpForm';
 
 
 const CartDrawer = () => {
+  const [modal1Open, setModal1Open] = useState(false);
+  const [modal2Open, setModal2Open] = useState(false);
+  const [signIn , setSignIn] = useState(true)
   const [open, setOpen] = useState(false);
   const {state:{cart}, dispatch} = useContext(CartContext)
   const router = useRouter()
@@ -35,7 +41,8 @@ const CartDrawer = () => {
       toast.error('Order before you can proceed')
       onClose()
     }else if(auth.currentUser === null){
-      toast.error('Login to place an Order')
+      // toast.error('Login to place an Order')
+      setModal1Open(true)
     }else{
       onClose()
       router.push('/checkout')
@@ -51,10 +58,15 @@ const CartDrawer = () => {
       </Button>
     </Badge>
       
-      <Drawer title={<div className='flex text-base items-center font-semibold '><BiShoppingBag size={20} /> <p className='m-0 ml-2'>Shopping Cart</p></div>} placement="right"headerStyle={{backgroundColor:'rgb(238, 242, 255)'}} footer={<div className='h-12 bg-emerald-500 rounded-lg p-2 hover:bg-emerald-600 flex justify-between' onClick={proceed}>
-        <p className='text-white text-base m-0 align-middle mt-1'>Proceed To Checkout</p>
-        <p className='bg-white text-emerald-500 w-[30%] h-full rounded-lg align-middle text-base font-semibold flex items-center justify-center p-2'>N{total}</p>
-      </div>}   onClose={onClose} open={open} bodyStyle={{padding:'0'}}>
+      <Drawer 
+        title={<div className='flex text-base items-center font-semibold '><BiShoppingBag size={20} /> <p className='m-0 ml-2'>Shopping Cart</p></div>} placement="right"headerStyle={{backgroundColor:'rgb(238, 242, 255)'}} 
+        footer={<Button type="link" style={{ padding:'0',width:'100%'}}  onClick={proceed}>
+          <div className='h-10 bg-emerald-500 rounded-md p-2 hover:bg-emerald-600 flex justify-between cursor-pointer'>
+            <p className='text-white text-base m-0 align-middle '>Proceed To Checkout</p>
+            <p className='bg-white text-emerald-500 w-[30%] h-full rounded-md align-middle text-base font-semibold flex items-center justify-center p-2 m-0'>N{total}</p>
+          </div>
+        </Button>}   
+      onClose={onClose} open={open} bodyStyle={{padding:'0'}} footerStyle={{height:'4rem'}}>
         {cart.length === 0 &&
             <div className='w-full h-full flex items-center flex-col justify-center'>
               <span className='bg-gray-50 text-emerald-500 p-2 rounded-full'>
@@ -89,6 +101,16 @@ const CartDrawer = () => {
           ))
         }
       </Drawer>
+      <Modal
+        footer={null}
+        style={{ top: 30, border:'none', textAlign:'center', }}
+        open={modal1Open}
+        onOk={() => setModal1Open(false)}
+        onCancel={() => setModal1Open(false)}
+        
+      >
+        {signIn ? <SignInForm setSignIn={setSignIn} setOpen={setModal1Open}/> : <SingUpForm setSignIn={setSignIn} setOpen={setModal1Open}/>}
+        </Modal>
     </>
   )
 }

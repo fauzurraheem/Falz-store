@@ -123,7 +123,7 @@ const [Input, setInput] = useState('')
         <div className=''>
         <div className='flex items-center justify-center md:justify-between bg-emerald-500	px-9 static top-0 h-[65px]  '>
           <Link href={'./'}>
-            <div className='w-1/4 md:flex	hidden items-center' >
+            <div className='w-1/4 md:flex	hidden items-center cursor-pointer' >
                   <Image src={logo} width={50}  height={50} color='black'/>
                   <span className=' font-semibold text-white text-2xl '>Falz-Store</span>
             </div>
@@ -294,49 +294,49 @@ const [Input, setInput] = useState('')
         <hr></hr>
       </div>
         <Link href={'/offer'}>
-          <div className='py-2 mt-4 pl-4 flex text-black  items-center hover:bg-gray-50 cursor-pointer '>
+          <div onClick={onChildrenDrawerClose} className='py-2 mt-4 pl-4 flex text-black  items-center hover:bg-gray-50 cursor-pointer '>
             <AiOutlineGift />
           <p className='m-0 hover:text-emerald-600 ml-2'>Offer</p>
           </div>
         </Link>
         <Link href={'/checkout'}>
-          <div className='py-2 px-4 flex text-black        items-center hover:bg-gray-50 cursor-pointer  '>
+          <div onClick={onChildrenDrawerClose} className='py-2 px-4 flex text-black        items-center hover:bg-gray-50 cursor-pointer  '>
             <BiCheckCircle />
           <p className='m-0 hover:text-emerald-600 ml-2'>CheckOut</p>
           </div>
         </Link>
         <Link href={'/offer'}>
-          <div className='py-2 px-4 flex text-black        items-center hover:bg-gray-50 cursor-pointer  '>
+          <div onClick={onChildrenDrawerClose} className='py-2 px-4 flex text-black        items-center hover:bg-gray-50 cursor-pointer  '>
             <AiOutlineQuestionCircle />
           <p className='m-0 hover:text-emerald-600 ml-2'>FAQ</p>
           </div>
         </Link>
         <Link href={'/about'}>
-          <div className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer  '>
+          <div onClick={onChildrenDrawerClose} className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer  '>
             <MdPeopleOutline />
           <p className='m-0 hover:text-emerald-600 ml-2'>About Us</p>
           </div>
         </Link>
         <Link href={'/contact'}>
-          <div className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer  '>
+          <div onClick={onChildrenDrawerClose} className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer  '>
             <MdOutlinePrivacyTip />
           <p className='m-0 hover:text-emerald-600 ml-2'>Contact Us</p>
           </div>
         </Link>
         <Link href={'/policy'}>
-          <div className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer '>
+          <div onClick={onChildrenDrawerClose} className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer '>
             <HiPhoneIncoming/>
           <p className='m-0 hover:text-emerald-600 ml-2'>Privacy Policy</p>
           </div>
         </Link>
         <Link href={'/terms'}>
-          <div className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer  '>
+          <div onClick={onChildrenDrawerClose} className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer  '>
             <AiOutlineFileText/>
           <p className='m-0 hover:text-emerald-600 ml-2'>Terms & Condition</p>
           </div>
         </Link>
-        <Link href={'/notfound'}>
-          <div className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer '>
+        <Link href={'/jj/eee'}>
+          <div onClick={onChildrenDrawerClose} className='py-2 px-4 flex text-black items-center hover:bg-gray-50 cursor-pointer '>
             <BsExclamationCircle />
           <p className='m-0 hover:text-emerald-600 ml-2'>404</p>
           </div>

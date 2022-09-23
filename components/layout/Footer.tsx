@@ -27,9 +27,9 @@ const Footer = () => {
           <Image src={image00} width={1000} height={1000} />
           </div>
           <div className='text-base'>
-            <h3 className='text-center text-2xl	font-bold '>Get Your Daily Needs From Our KachaBazar Store</h3>
+            <h3 className='text-center text-2xl	font-bold '>Get Your Daily Needs From Our Falz-Store</h3>
             <p className='text-center	'>
-            There are many products you will find our shop, Choose your daily necessary product from our KachaBazar shop and get some special offer.
+            There are many products you will find our shop, Choose your daily necessary product from our Falz-store and get some special offer.
             </p>
             <div className='sm:flex justify-center hidden '>
               <Image src={appstore} width={200} height={200} />
