@@ -70,7 +70,7 @@ const SignInForm:React.FC<Props> = ({setSignIn, setOpen}) => {
   return (
     <div className='text-gray-700'>
       <div>
-      <h2 className='text-2xl text-center font-semibold'>Signing Up</h2>
+      <h2 className='text-2xl text-center font-semibold'>Signing In</h2>
         <p className='text-center'>Login with your email</p>
       </div>
       <form className='text-gray-500 text-sm text-left' onSubmit={handleSubmit}>
@@ -105,7 +105,7 @@ const SignInForm:React.FC<Props> = ({setSignIn, setOpen}) => {
             <p className='m-0'>Login With Google</p>
           </div>
         </div>
-        <p className='text-center text-sm'>Not have a account? <span className='font-semibold cursor-pointer' onClick={() => setSignIn(false)}> Register</span></p>
+        <p className='text-center text-sm'>Not have a account? <span className='font-extrabold cursor-pointer' onClick={() => setSignIn(false)}> Register</span></p>
       </div>
     </div>
   )

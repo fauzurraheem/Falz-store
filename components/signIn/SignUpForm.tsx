@@ -129,7 +129,7 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
             <p className='m-0'>Login With Google</p>
           </div>
         </div>
-        <p className='text-center text-sm'>Already have an account <span className='font-semibold cursor-pointer' onClick={() => setSignIn(true)}> Login</span></p>
+        <p className='text-center text-sm'>Already have an account <span className='gifont-extrabold cursor-pointer' onClick={() => setSignIn(true)}> Login</span></p>
       </div>
     </div>
   )
