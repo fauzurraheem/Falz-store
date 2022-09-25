@@ -209,7 +209,7 @@ const Checkout = () => {
                       <MdOutlineLocalShipping size={25}/>
                       <div className='ml-4'>
                         <h3 className='m-0 text-sm text-gray-500 font-normal'>FedEx</h3>
-                        <p className='m-0 text-xs text-gray-400'>Delivery: Today Cost : $60.00</p>
+                        <p className='m-0 text-xs text-gray-400'>Delivery: Today Cost : N60.00</p>
                       </div>
                     </div>
                     <input type="radio" value={shipping} onClick={(e) => setShipping(60)} name="shipping" className='py-3 px-3 outline-none focus:border-emerald-500 border hover:border-emerald-500 rounded-full' placeholder='Full Name'/>
@@ -219,7 +219,7 @@ const Checkout = () => {
                       <MdOutlineLocalShipping size={25}/>
                       <div className='ml-4'>
                         <h3 className='m-0 text-sm text-gray-500 font-normal'>UPS</h3>
-                        <p className='m-0 text-xs text-gray-400'>Delivery: 7 Days Cost : $20.00</p>
+                        <p className='m-0 text-xs text-gray-400'>Delivery: 7 Days Cost : N20.00</p>
                       </div>
                     </div>
                     <input type="radio" name="shipping" value={shipping} onClick={(e) => setShipping(20)} className='py-3 px-3 outline-none focus:border-emerald-500 border hover:border-emerald-500 rounded-full' placeholder='Full Name' style={{backgroundColor:'green', color:'green'}}/>

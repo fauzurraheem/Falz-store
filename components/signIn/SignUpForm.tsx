@@ -60,10 +60,10 @@ const SingUpForm:React.FC<Props> = ({setSignIn, setOpen}) => {
         
       } catch (error) {
         setLoading(false)
-        toast.error(error)
+        toast.error('poor connection please try again')
       }
 
-      router.push('/')
+      // router.push('/')
   }
 
   const loginWithGoogle = () => {
