@@ -62,26 +62,6 @@ const [Input, setInput] = useState('')
 
  const user = useContext(AuthContext)
  
- const treeData: DataNode[] = 
-  categoryArr.map((cat, index) => ({
-    title:(<div className='flex items-center  text-sm'>
-    <div className='h-5 w-5' style={{backgroundImage:`url(${cat.icon})`,backgroundRepeat:'no-repeat',backgroundSize:"cover"}}>
-  </div>
-    <div className='p-1 flex flex-col '>
-    <h5 className=' text-black cursor-pointer ml-3 m-0'>{cat.parent}</h5> 
-    </div>
-  </div>),
-  key: `0-${index}`,
-  children:cat.children.map((chil, index) => ({
-    title:(<Link href={`/${chil}`}>
-    <h5 className=' text-black hover:text-emerald-700 cursor-pointer m-0' onClick={onChildrenDrawerClose}>{chil}</h5>
-    </Link>),
-    key:`0-0-1`,
-  }))
-    
-}))
-  
-
   const onSelect: TreeProps['onSelect'] = (selectedKeys, info) => {
     console.log('selected', selectedKeys, info);
   };
@@ -282,13 +262,16 @@ const [Input, setInput] = useState('')
         <p className='text-lg font-bold mb-2'>All Categories</p>
         <hr></hr>
       </div>
-       <Tree
-      // showLine
-      // switcherIcon={<DownOutlined />}
-      // defaultExpandedKeys={['0-0-0']}
-      onSelect={onSelect}
-      treeData={treeData}
-    />
+       {categoryArr.map(item => (
+        <Link href={`/${item.parent}`}>
+        <div className='flex items-center  text-sm' onClick={() => setOpen(false)}>
+          <div className='h-5 w-5' style={{backgroundImage:`url(${item.icon})`,backgroundRepeat:'no-repeat',backgroundSize:"cover"}}></div>
+          <div className='p-1 flex flex-col '>
+            <h5 className=' text-black cursor-pointer ml-3 m-0'>{item.parent}</h5> 
+          </div>
+        </div>
+        </Link>
+       ))}
       <div className='mt-14'>
         <p className='text-lg font-bold mb-2'>Pages</p>
         <hr></hr>
