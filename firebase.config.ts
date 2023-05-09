@@ -6,12 +6,12 @@ import { getFirestore } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libra
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBN0vghxYuQGxIQ7Bq475tY18Q3VKqtRc4",
-  authDomain: "kachabazar-store-5d0c4.firebaseapp.com",
-  projectId: "kachabazar-store-5d0c4",
-  storageBucket: "kachabazar-store-5d0c4.appspot.com",
-  messagingSenderId: "672173468145",
-  appId: "1:672173468145:web:8c634a2e39b8c75af2fc50"
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain:process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId:process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_SENDERID,
+  appId:process.env.NEXT_PUBLIC_APP_ID
 };
 
 
