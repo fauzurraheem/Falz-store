@@ -43,7 +43,7 @@ const Contact = () => {
             For any suppoort just send your query
             </h3>
             <p className='my-6'>
-            Collaboratively promote client-focused convergence vis-a-vis customer directed alignments via plagiarize strategic users and standardized infrastructures.
+            Collaboratively  promote client-focused convergence vis-a-vis customer directed alignments via plagiarize strategic users and standardized infrastructures.
             </p>
           </div>
           <form className='grid text-sm font-light'>
