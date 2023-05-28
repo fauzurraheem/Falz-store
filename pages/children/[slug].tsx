@@ -40,7 +40,7 @@ const Children = () => {
       const product = await getAllProductsA()
       setAllroduct(product)
       setLoading(false)
-      // console.log(product+ 'you')
+      
     }
     Product()
   }, [])
@@ -50,12 +50,9 @@ const Children = () => {
   })
   
   
-  console.log(Allproduct)
   const Descending = [...find].sort((a, b) => b.price - a.price);
-  // console.log(numDescending);
 
   const Ascending = [...find].sort((a, b) => a.price - b.price);
-  // console.log(numAscending);
 
   if (loading ){
     return <div className='h-[700px] w-full flex justify-center'>Loading...</div>

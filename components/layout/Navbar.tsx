@@ -37,7 +37,6 @@ const Navbar = () => {
 const [Input, setInput] = useState('')
   const [open, setOpen] = useState(false);
   const [childrenDrawer, setChildrenDrawer] = useState(false);
-  // console.log(Input)
   const router = useRouter()
 
 
@@ -68,7 +67,6 @@ const [Input, setInput] = useState('')
 
   const handleSearch = (e) => {
     e.preventDefault()
-    // console.log(Input)
     router.push(`/search/${Input}`)
     setInput('')
   }

@@ -43,8 +43,8 @@ const Order = () => {
     signOut(auth).then(() => {
       router.push('/')
       toast.success("LogOut Successfull");
-    }).catch((error) => {
-      console.log(e)
+    }).catch((error: any) => {
+      console.log(error)
     });
     
   }

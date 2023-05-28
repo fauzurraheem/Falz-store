@@ -144,7 +144,7 @@ const Checkout = () => {
           })
         } catch (error) {
           toast.error('Connection Problem')
-          console.log(error)
+      
           setLoading(false)
         }
       }

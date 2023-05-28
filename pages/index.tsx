@@ -28,7 +28,6 @@ export interface HomePageProps {
 
 export const getStaticProps: GetStaticProps<HomePageProps>= async () => {
   const products:product[] = await getAllProducts()
-  // console.log(typeof( products))
   const disProducts:product[] = await getDisProducts()
   return { props: { 
     products,

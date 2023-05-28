@@ -65,8 +65,7 @@ if (loading){
 }
 
 
-const date = new Date(Number(product.timeStamp.seconds)*1000).toDateString() 
-console.log(date)
+  const date = new Date(Number(product.timeStamp.seconds)*1000).toDateString() 
   return (
     <div className='bg-gray-50 py-8 px-6' ref={componentRef}>
       <p className='m-0 py-2 px-4 mb-4 bg-emerald-100 rounded-md text-base'>Thank you <span className='text-emerald-600 font-medium'>{product.firstName+' '+product.lastName}</span>, Your order have been received !</p>

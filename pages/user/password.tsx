@@ -18,7 +18,7 @@ const Details = () => {
       router.push('/')
       toast.success("LogOut Successfull");
     }).catch((error) => {
-      console.log(e)
+      console.log(error)
     });
     
   }
